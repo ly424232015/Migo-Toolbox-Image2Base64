@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="">
     <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Migo Toolbox - Free Online Image to Base64 Converter | Fast & Secure</title>
@@ -95,15 +97,95 @@
             gap: 0.5rem;
         }
 
+        .logo a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
         .logo-icon {
             width: 36px;
             height: 36px;
-            background: rgba(255,255,255,0.2);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-toggle {
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: background 0.3s;
+        }
+
+        .nav-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .nav-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 260px;
+            z-index: 200;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .nav-menu.show {
+            display: block;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .nav-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-menu a:hover {
+            background: #eef2ff;
+            color: var(--primary);
+        }
+
+        .nav-menu a.active-page {
+            background: #eef2ff;
+            color: var(--primary);
+            font-weight: 600;
         }
 
         .lang-switch {
@@ -584,12 +666,30 @@
 <header>
     <div class="header-content">
         <div class="logo">
-            <div class="logo-icon">🔧</div>
-            <span>Migo Toolbox</span>
+            <a href="index.html">
+                <img src="/icon.png" alt="Migo Toolbox" class="logo-icon">
+                <span>Migo Toolbox</span>
+            </a>
         </div>
-        <div class="lang-switch">
-            <button class="lang-btn active" onclick="switchLang('en')">EN</button>
-            <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+        <div class="header-right">
+            <div class="nav-dropdown">
+                <button class="nav-toggle" onclick="toggleNav()" data-en="🧰 All Tools ▾" data-zh="🧰 所有工具 ▾">🧰 All Tools ▾</button>
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="active-page">🖼️ <span data-en="Image to Base64" data-zh="图片转 Base64">Image to Base64</span></a>
+                    <a href="base64-to-image.html">📸 <span data-en="Base64 to Image" data-zh="Base64 转图片">Base64 to Image</span></a>
+                    <a href="json-formatter.html">📋 <span data-en="JSON Formatter" data-zh="JSON 格式化">JSON Formatter</span></a>
+                    <a href="url-encoder.html">🔗 <span data-en="URL Encode/Decode" data-zh="URL 编码/解码">URL Encode/Decode</span></a>
+                    <a href="unicode-converter.html">🈶 <span data-en="Unicode Converter" data-zh="Unicode 中文互转">Unicode Converter</span></a>
+                    <a href="hex-converter.html">🔢 <span data-en="Hex Converter" data-zh="Hex 十六进制转换">Hex Converter</span></a>
+                    <a href="ascii-table.html">🔤 <span data-en="ASCII Table" data-zh="ASCII 码对照表">ASCII Table</span></a>
+                    <a href="md5-hash.html">🔒 <span data-en="MD5 Hash" data-zh="MD5 加密">MD5 Hash</span></a>
+                    <a href="sha-hash.html">🛡️ <span data-en="SHA1/SHA256 Hash" data-zh="SHA1/SHA256 加密">SHA1/SHA256 Hash</span></a>
+                </div>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+            </div>
         </div>
     </div>
 </header>
@@ -751,6 +851,17 @@
             }
         });
     }
+
+    function toggleNav() {
+        document.getElementById('navMenu').classList.toggle('show');
+    }
+
+    document.addEventListener('click', function(e) {
+        const dropdown = document.querySelector('.nav-dropdown');
+        if (dropdown && !dropdown.contains(e.target)) {
+            document.getElementById('navMenu').classList.remove('show');
+        }
+    });
 
     const uploadArea = document.getElementById('uploadArea');
     const fileInput = document.getElementById('fileInput');
