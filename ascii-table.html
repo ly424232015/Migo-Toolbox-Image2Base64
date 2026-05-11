@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ASCII Table - Migo Toolbox</title>
+    <meta name="description" content="Complete ASCII table with decimal, hexadecimal, octal, binary, and character representations.">
+    <meta name="keywords" content="ascii table, ascii codes, character set, online reference, Migo Toolbox, ASCII码对照表">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/ascii-table.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ASCII Table - Migo Toolbox">
+    <meta property="og:description" content="Complete ASCII table with decimal, hexadecimal, octal, binary, and character representations.">
+    <meta property="og:url" content="https://migotoolbox.com/ascii-table.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9667434965972746" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --primary-light: #818cf8;
+            --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b;
+            --border: #e2e8f0; --success: #10b981; --success-bg: #ecfdf5;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .logo a { color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .header-right { display: flex; align-items: center; gap: 1rem; }
+        .nav-dropdown { position: relative; }
+        .nav-toggle {
+            padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border: none;
+            color: white; border-radius: 8px; cursor: pointer; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 0.4rem; transition: background 0.3s;
+        }
+        .nav-toggle:hover { background: rgba(255,255,255,0.3); }
+        .nav-menu {
+            display: none; position: absolute; right: 0; top: calc(100% + 8px);
+            background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 260px; z-index: 200; overflow: hidden; border: 1px solid var(--border);
+        }
+        .nav-menu.show { display: block; }
+        .nav-menu a {
+            display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.25rem;
+            color: var(--text); text-decoration: none; font-size: 0.9rem;
+            transition: background 0.2s; border-bottom: 1px solid #f1f5f9;
+        }
+        .nav-menu a:last-child { border-bottom: none; }
+        .nav-menu a:hover { background: #eef2ff; color: var(--primary); }
+        .nav-menu a.active-page { background: #eef2ff; color: var(--primary); font-weight: 600; }
+        .lang-switch { display: flex; background: rgba(255,255,255,0.2); border-radius: 8px; overflow: hidden; }
+        .lang-btn { padding: 0.5rem 1rem; border: none; background: transparent; color: white; cursor: pointer; font-size: 0.9rem; transition: background 0.3s; }
+        .lang-btn.active { background: rgba(255,255,255,0.3); font-weight: 600; }
+        .lang-btn:hover { background: rgba(255,255,255,0.25); }
+        main { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
+        .hero { text-align: center; margin-bottom: 2rem; }
+        .hero h1 {
+            font-size: 2rem; margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .tool-card {
+            background: var(--card); border-radius: 16px; padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border);
+        }
+        .table-container { overflow-x: auto; margin-top: 1.5rem; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th, td {
+            padding: 0.75rem 1rem; text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--primary); color: white; font-weight: 600; position: sticky; top: 0;
+        }
+        tr:hover { background: #f1f5f9; }
+        tr.control { background: #fff3cd; }
+        tr.printable { background: #ffffff; }
+        .char-cell {
+            font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.1rem;
+            min-width: 50px;
+        }
+        footer {
+            text-align: center; padding: 2rem 1.5rem; color: var(--text-secondary);
+            font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.5rem; }
+            .tool-card { padding: 1.25rem; }
+            .header-content { flex-direction: column; gap: 0.75rem; }
+            th, td { padding: 0.5rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <a href="index.html">
+                <img src="/icon.png" alt="Migo Toolbox" class="logo-icon">
+                <span>Migo Toolbox</span>
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="nav-dropdown">
+                <button class="nav-toggle" onclick="toggleNav()" data-en="🧰 All Tools ▾" data-zh="🧰 所有工具 ▾">🧰 All Tools ▾</button>
+                <div class="nav-menu" id="navMenu">
+                    <a href="ascii-table.html" class="active-page">🔤 <span data-en="ASCII Table" data-zh="ASCII 码对照表">ASCII Table</span></a>
+                    <a href="index.html">🖼️ <span data-en="Image to Base64" data-zh="图片转 Base64">Image to Base64</span></a>
+                    <a href="base64-to-image.html">📸 <span data-en="Base64 to Image" data-zh="Base64 转图片">Base64 to Image</span></a>
+                    <a href="json-formatter.html">📋 <span data-en="JSON Formatter" data-zh="JSON 格式化">JSON Formatter</span></a>
+                    <a href="url-encoder.html">🔗 <span data-en="URL Encode/Decode" data-zh="URL 编码/解码">URL Encode/Decode</span></a>
+                    <a href="unicode-converter.html">🈶 <span data-en="Unicode Converter" data-zh="Unicode 中文互转">Unicode Converter</span></a>
+                    <a href="hex-converter.html">🔢 <span data-en="Hex Converter" data-zh="Hex 十六进制转换">Hex Converter</span></a>
+                    <a href="md5-hash.html">🔒 <span data-en="MD5 Hash" data-zh="MD5 加密">MD5 Hash</span></a>
+                    <a href="sha-hash.html">🛡️ <span data-en="SHA1/SHA256 Hash" data-zh="SHA1/SHA256 加密">SHA1/SHA256 Hash</span></a>
+                </div>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <h1 data-en="ASCII Table" data-zh="ASCII 码对照表">ASCII Table</h1>
+        <p data-en="Complete ASCII character set with decimal, hex, octal, binary, and HTML entity representations." data-zh="完整的 ASCII 字符集，包含十进制、十六进制、八进制、二进制和 HTML 实体表示。">Complete ASCII character set with decimal, hex, octal, binary, and HTML entity representations.</p>
+    </section>
+
+    <section class="tool-card">
+        <div class="table-container">
+            <table id="asciiTable">
+                <thead>
+                    <tr>
+                        <th data-en="Dec" data-zh="十进制">Dec</th>
+                        <th data-en="Hex" data-zh="十六进制">Hex</th>
+                        <th data-en="Oct" data-zh="八进制">Oct</th>
+                        <th data-en="Bin" data-zh="二进制">Bin</th>
+                        <th data-en="Char" data-zh="字符">Char</th>
+                        <th data-en="Description" data-zh="描述">Description</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p data-en="© 2024 Migo Toolbox. Free Online Tools for Everyone." data-zh="© 2024 Migo 工具箱. 为每个人提供的免费在线工具。">© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+            const val = el.getAttribute('data-' + lang);
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { el.placeholder = val; }
+            else { el.innerHTML = val; }
+        });
+        generateTable();
+    }
+
+    function toggleNav() { document.getElementById('navMenu').classList.toggle('show'); }
+    document.addEventListener('click', function(e) {
+        const d = document.querySelector('.nav-dropdown');
+        if (d && !d.contains(e.target)) document.getElementById('navMenu').classList.remove('show');
+    });
+
+    const asciiDescriptions = {
+        en: [
+            "Null", "Start of Heading", "Start of Text", "End of Text", "End of Transmit", "Enquiry", "Acknowledgment", "Bell",
+            "Backspace", "Horizontal Tab", "Line Feed", "Vertical Tab", "Form Feed", "Carriage Return", "Shift Out", "Shift In",
+            "Data Link Escape", "Device Control 1", "Device Control 2", "Device Control 3", "Device Control 4", "Negative Ack", "Synchronous Idle", "End of Transmit Block",
+            "Cancel", "End of Medium", "Substitute", "Escape", "File Separator", "Group Separator", "Record Separator", "Unit Separator",
+            "Space", "Exclamation", "Double Quote", "Number", "Dollar", "Percent", "Ampersand", "Single Quote",
+            "Left Parenthesis", "Right Parenthesis", "Asterisk", "Plus", "Comma", "Hyphen", "Period", "Slash",
+            "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven",
+            "Eight", "Nine", "Colon", "Semicolon", "Less Than", "Equals", "Greater Than", "Question Mark",
+            "At", "Uppercase A", "Uppercase B", "Uppercase C", "Uppercase D", "Uppercase E", "Uppercase F", "Uppercase G",
+            "Uppercase H", "Uppercase I", "Uppercase J", "Uppercase K", "Uppercase L", "Uppercase M", "Uppercase N", "Uppercase O",
+            "Uppercase P", "Uppercase Q", "Uppercase R", "Uppercase S", "Uppercase T", "Uppercase U", "Uppercase V", "Uppercase W",
+            "Uppercase X", "Uppercase Y", "Uppercase Z", "Left Bracket", "Backslash", "Right Bracket", "Caret", "Underscore",
+            "Backtick", "Lowercase a", "Lowercase b", "Lowercase c", "Lowercase d", "Lowercase e", "Lowercase f", "Lowercase g",
+            "Lowercase h", "Lowercase i", "Lowercase j", "Lowercase k", "Lowercase l", "Lowercase m", "Lowercase n", "Lowercase o",
+            "Lowercase p", "Lowercase q", "Lowercase r", "Lowercase s", "Lowercase t", "Lowercase u", "Lowercase v", "Lowercase w",
+            "Lowercase x", "Lowercase y", "Lowercase z", "Left Brace", "Vertical Bar", "Right Brace", "Tilde", "Delete"
+        ],
+        zh: [
+            "空字符", "标题开始", "正文开始", "正文结束", "传输结束", "请求", "确认", "响铃",
+            "退格", "水平制表符", "换行", "垂直制表符", "换页", "回车", "移出", "移入",
+            "数据链路转义", "设备控制1", "设备控制2", "设备控制3", "设备控制4", "否定确认", "同步空闲", "传输块结束",
+            "取消", "介质结束", "替代", "转义", "文件分隔符", "组分隔符", "记录分隔符", "单元分隔符",
+            "空格", "感叹号", "双引号", "井号", "美元", "百分号", "和号", "单引号",
+            "左括号", "右括号", "星号", "加号", "逗号", "连字符", "句号", "斜杠",
+            "零", "一", "二", "三", "四", "五", "六", "七",
+            "八", "九", "冒号", "分号", "小于", "等于", "大于", "问号",
+            "艾特", "大写A", "大写B", "大写C", "大写D", "大写E", "大写F", "大写G",
+            "大写H", "大写I", "大写J", "大写K", "大写L", "大写M", "大写N", "大写O",
+            "大写P", "大写Q", "大写R", "大写S", "大写T", "大写U", "大写V", "大写W",
+            "大写X", "大写Y", "大写Z", "左方括号", "反斜杠", "右方括号", "脱字符", "下划线",
+            "反引号", "小写a", "小写b", "小写c", "小写d", "小写e", "小写f", "小写g",
+            "小写h", "小写i", "小写j", "小写k", "小写l", "小写m", "小写n", "小写o",
+            "小写p", "小写q", "小写r", "小写s", "小写t", "小写u", "小写v", "小写w",
+            "小写x", "小写y", "小写z", "左花括号", "竖线", "右花括号", "波浪号", "删除"
+        ]
+    };
+
+    function getDisplayChar(code) {
+        if (code < 32 || code === 127) {
+            const symbols = ['NUL','SOH','STX','ETX','EOT','ENQ','ACK','BEL','BS','HT','LF','VT','FF','CR','SO','SI',
+                            'DLE','DC1','DC2','DC3','DC4','NAK','SYN','ETB','CAN','EM','SUB','ESC','FS','GS','RS','US'];
+            return code === 127 ? 'DEL' : symbols[code];
+        }
+        return String.fromCharCode(code);
+    }
+
+    function generateTable() {
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+        const desc = asciiDescriptions[currentLang];
+        
+        for (let i = 0; i <= 127; i++) {
+            const tr = document.createElement('tr');
+            tr.className = i < 32 || i === 127 ? 'control' : 'printable';
+            
+            const dec = document.createElement('td');
+            dec.textContent = i;
+            
+            const hex = document.createElement('td');
+            hex.textContent = '0x' + i.toString(16).toUpperCase().padStart(2, '0');
+            
+            const oct = document.createElement('td');
+            oct.textContent = '0o' + i.toString(8).padStart(3, '0');
+            
+            const bin = document.createElement('td');
+            bin.textContent = i.toString(2).padStart(8, '0');
+            
+            const char = document.createElement('td');
+            char.className = 'char-cell';
+            char.textContent = getDisplayChar(i);
+            
+            const description = document.createElement('td');
+            description.textContent = desc[i];
+            
+            tr.appendChild(dec);
+            tr.appendChild(hex);
+            tr.appendChild(oct);
+            tr.appendChild(bin);
+            tr.appendChild(char);
+            tr.appendChild(description);
+            tbody.appendChild(tr);
+        }
+    }
+
+    generateTable();
+</script>
+</body>
+</html>

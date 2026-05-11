@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>URL Encode / Decode - Migo Toolbox</title>
+    <meta name="description" content="Free online URL encoder and decoder. Encode or decode URL strings instantly. 100% client-side processing.">
+    <meta name="keywords" content="url encoder, url decoder, percent encoding, online tool, Migo Toolbox, URL编码, URL解码">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/url-encoder.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="URL Encode / Decode - Migo Toolbox">
+    <meta property="og:description" content="Free online URL encoder and decoder. Encode or decode URL strings instantly.">
+    <meta property="og:url" content="https://migotoolbox.com/url-encoder.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9667434965972746" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --primary-light: #818cf8;
+            --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b;
+            --border: #e2e8f0; --success: #10b981; --success-bg: #ecfdf5;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .logo a { color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .header-right { display: flex; align-items: center; gap: 1rem; }
+        .nav-dropdown { position: relative; }
+        .nav-toggle {
+            padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border: none;
+            color: white; border-radius: 8px; cursor: pointer; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 0.4rem; transition: background 0.3s;
+        }
+        .nav-toggle:hover { background: rgba(255,255,255,0.3); }
+        .nav-menu {
+            display: none; position: absolute; right: 0; top: calc(100% + 8px);
+            background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 260px; z-index: 200; overflow: hidden; border: 1px solid var(--border);
+        }
+        .nav-menu.show { display: block; }
+        .nav-menu a {
+            display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.25rem;
+            color: var(--text); text-decoration: none; font-size: 0.9rem;
+            transition: background 0.2s; border-bottom: 1px solid #f1f5f9;
+        }
+        .nav-menu a:last-child { border-bottom: none; }
+        .nav-menu a:hover { background: #eef2ff; color: var(--primary); }
+        .nav-menu a.active-page { background: #eef2ff; color: var(--primary); font-weight: 600; }
+        .lang-switch { display: flex; background: rgba(255,255,255,0.2); border-radius: 8px; overflow: hidden; }
+        .lang-btn { padding: 0.5rem 1rem; border: none; background: transparent; color: white; cursor: pointer; font-size: 0.9rem; transition: background 0.3s; }
+        .lang-btn.active { background: rgba(255,255,255,0.3); font-weight: 600; }
+        .lang-btn:hover { background: rgba(255,255,255,0.25); }
+        main { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
+        .hero { text-align: center; margin-bottom: 2rem; }
+        .hero h1 {
+            font-size: 2rem; margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .tool-card {
+            background: var(--card); border-radius: 16px; padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border);
+        }
+        .editor-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .editor-panel { display: flex; flex-direction: column; }
+        .panel-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .panel-header h3 { font-size: 1rem; }
+        textarea {
+            width: 100%; min-height: 250px; padding: 1rem; border: 1px solid var(--border);
+            border-radius: 10px; font-family: 'Courier New', monospace; font-size: 0.85rem;
+            resize: vertical; background: #1e1e2e; color: #a6e3a1; line-height: 1.5;
+        }
+        .btn-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .action-btn {
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border); background: white;
+            border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 500;
+        }
+        .action-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .action-btn.primary { background: var(--primary); color: white; border-color: var(--primary); }
+        .action-btn.primary:hover { background: var(--primary-dark); }
+        .copy-btn {
+            padding: 0.4rem 0.8rem; background: var(--success); color: white;
+            border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem;
+            font-weight: 600; transition: all 0.3s;
+        }
+        .copy-btn:hover { background: #059669; }
+        .copy-btn.copied { background: var(--primary); }
+        footer {
+            text-align: center; padding: 2rem 1.5rem; color: var(--text-secondary);
+            font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.5rem; }
+            .tool-card { padding: 1.25rem; }
+            .editor-row { grid-template-columns: 1fr; }
+            .header-content { flex-direction: column; gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <a href="index.html">
+                <img src="/icon.png" alt="Migo Toolbox" class="logo-icon">
+                <span>Migo Toolbox</span>
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="nav-dropdown">
+                <button class="nav-toggle" onclick="toggleNav()" data-en="🧰 All Tools ▾" data-zh="🧰 所有工具 ▾">🧰 All Tools ▾</button>
+                <div class="nav-menu" id="navMenu">
+                    <a href="url-encoder.html" class="active-page">🔗 <span data-en="URL Encode/Decode" data-zh="URL 编码/解码">URL Encode/Decode</span></a>
+                    <a href="index.html">🖼️ <span data-en="Image to Base64" data-zh="图片转 Base64">Image to Base64</span></a>
+                    <a href="base64-to-image.html">📸 <span data-en="Base64 to Image" data-zh="Base64 转图片">Base64 to Image</span></a>
+                    <a href="json-formatter.html">📋 <span data-en="JSON Formatter" data-zh="JSON 格式化">JSON Formatter</span></a>
+                    <a href="unicode-converter.html">🈶 <span data-en="Unicode Converter" data-zh="Unicode 中文互转">Unicode Converter</span></a>
+                    <a href="hex-converter.html">🔢 <span data-en="Hex Converter" data-zh="Hex 十六进制转换">Hex Converter</span></a>
+                    <a href="ascii-table.html">🔤 <span data-en="ASCII Table" data-zh="ASCII 码对照表">ASCII Table</span></a>
+                    <a href="md5-hash.html">🔒 <span data-en="MD5 Hash" data-zh="MD5 加密">MD5 Hash</span></a>
+                    <a href="sha-hash.html">🛡️ <span data-en="SHA1/SHA256 Hash" data-zh="SHA1/SHA256 加密">SHA1/SHA256 Hash</span></a>
+                </div>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <h1 data-en="URL Encode / Decode" data-zh="URL 编码 / 解码">URL Encode / Decode</h1>
+        <p data-en="Encode or decode URL strings with percent encoding. 100% client-side processing." data-zh="使用百分号编码进行 URL 编码或解码。100% 客户端处理。">Encode or decode URL strings with percent encoding. 100% client-side processing.</p>
+    </section>
+
+    <section class="tool-card">
+        <div class="btn-bar">
+            <button class="action-btn primary" onclick="encodeURL()" data-en="🔗 Encode" data-zh="🔗 编码">🔗 Encode</button>
+            <button class="action-btn" onclick="decodeURL()" data-en="🔓 Decode" data-zh="🔓 解码">🔓 Decode</button>
+            <button class="action-btn" onclick="swap()" data-en="⟳ Swap" data-zh="⟳ 交换">⟳ Swap</button>
+            <button class="action-btn" onclick="clearAll()" data-en="🗑 Clear" data-zh="🗑 清除">🗑 Clear</button>
+        </div>
+
+        <div class="editor-row">
+            <div class="editor-panel">
+                <div class="panel-header">
+                    <h3 data-en="Input" data-zh="输入">Input</h3>
+                </div>
+                <textarea id="urlInput" placeholder="https://example.com/?q=hello world" data-en="https://example.com/?q=hello world" data-zh="https://example.com/?q=hello world"></textarea>
+            </div>
+            <div class="editor-panel">
+                <div class="panel-header">
+                    <h3 data-en="Output" data-zh="输出">Output</h3>
+                    <button class="copy-btn" onclick="copyOutput()" data-en="📋 Copy" data-zh="📋 复制">📋 Copy</button>
+                </div>
+                <textarea id="urlOutput" readonly></textarea>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p data-en="© 2024 Migo Toolbox. Free Online Tools for Everyone." data-zh="© 2024 Migo 工具箱. 为每个人提供的免费在线工具。">© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+            const val = el.getAttribute('data-' + lang);
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { el.placeholder = val; }
+            else { el.innerHTML = val; }
+        });
+    }
+
+    function toggleNav() { document.getElementById('navMenu').classList.toggle('show'); }
+    document.addEventListener('click', function(e) {
+        const d = document.querySelector('.nav-dropdown');
+        if (d && !d.contains(e.target)) document.getElementById('navMenu').classList.remove('show');
+    });
+
+    function encodeURL() {
+        const input = document.getElementById('urlInput').value;
+        try {
+            document.getElementById('urlOutput').value = encodeURIComponent(input);
+        } catch (e) {
+            alert(currentLang === 'zh' ? '编码错误: ' + e.message : 'Encode error: ' + e.message);
+        }
+    }
+
+    function decodeURL() {
+        const input = document.getElementById('urlInput').value;
+        try {
+            document.getElementById('urlOutput').value = decodeURIComponent(input);
+        } catch (e) {
+            alert(currentLang === 'zh' ? '解码错误: 无效的编码字符串' : 'Decode error: Invalid encoded string');
+        }
+    }
+
+    function swap() {
+        const input = document.getElementById('urlInput');
+        const output = document.getElementById('urlOutput');
+        const temp = input.value;
+        input.value = output.value;
+        output.value = temp;
+    }
+
+    function copyOutput() {
+        const textarea = document.getElementById('urlOutput');
+        if (!textarea.value) return;
+        textarea.select();
+        document.execCommand('copy');
+        const btn = document.querySelector('.copy-btn');
+        const originalText = btn.textContent;
+        btn.classList.add('copied');
+        btn.textContent = currentLang === 'zh' ? '✅ 已复制' : '✅ Copied';
+        setTimeout(() => { btn.classList.remove('copied'); btn.textContent = originalText; }, 2000);
+    }
+
+    function clearAll() {
+        document.getElementById('urlInput').value = '';
+        document.getElementById('urlOutput').value = '';
+    }
+</script>
+</body>
+</html>

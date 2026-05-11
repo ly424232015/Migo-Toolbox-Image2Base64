@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MD5 Hash Generator - Migo Toolbox</title>
+    <meta name="description" content="Free online MD5 hash generator. Generate MD5 checksums for text and files. 100% client-side processing.">
+    <meta name="keywords" content="md5 hash, checksum, generator, online tool, Migo Toolbox, MD5加密">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/md5-hash.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MD5 Hash Generator - Migo Toolbox">
+    <meta property="og:description" content="Free online MD5 hash generator. Generate MD5 checksums for text and files.">
+    <meta property="og:url" content="https://migotoolbox.com/md5-hash.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9667434965972746" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --primary-light: #818cf8;
+            --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b;
+            --border: #e2e8f0; --success: #10b981; --success-bg: #ecfdf5;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .logo a { color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .header-right { display: flex; align-items: center; gap: 1rem; }
+        .nav-dropdown { position: relative; }
+        .nav-toggle {
+            padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border: none;
+            color: white; border-radius: 8px; cursor: pointer; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 0.4rem; transition: background 0.3s;
+        }
+        .nav-toggle:hover { background: rgba(255,255,255,0.3); }
+        .nav-menu {
+            display: none; position: absolute; right: 0; top: calc(100% + 8px);
+            background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 260px; z-index: 200; overflow: hidden; border: 1px solid var(--border);
+        }
+        .nav-menu.show { display: block; }
+        .nav-menu a {
+            display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.25rem;
+            color: var(--text); text-decoration: none; font-size: 0.9rem;
+            transition: background 0.2s; border-bottom: 1px solid #f1f5f9;
+        }
+        .nav-menu a:last-child { border-bottom: none; }
+        .nav-menu a:hover { background: #eef2ff; color: var(--primary); }
+        .nav-menu a.active-page { background: #eef2ff; color: var(--primary); font-weight: 600; }
+        .lang-switch { display: flex; background: rgba(255,255,255,0.2); border-radius: 8px; overflow: hidden; }
+        .lang-btn { padding: 0.5rem 1rem; border: none; background: transparent; color: white; cursor: pointer; font-size: 0.9rem; transition: background 0.3s; }
+        .lang-btn.active { background: rgba(255,255,255,0.3); font-weight: 600; }
+        .lang-btn:hover { background: rgba(255,255,255,0.25); }
+        main { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
+        .hero { text-align: center; margin-bottom: 2rem; }
+        .hero h1 {
+            font-size: 2rem; margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .tool-card {
+            background: var(--card); border-radius: 16px; padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border);
+        }
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .tab-btn {
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border); background: white;
+            border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s; font-weight: 500;
+        }
+        .tab-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        textarea {
+            width: 100%; min-height: 180px; padding: 1rem; border: 1px solid var(--border);
+            border-radius: 10px; font-family: 'Courier New', monospace; font-size: 0.9rem;
+            resize: vertical; background: #1e1e2e; color: #a6e3a1; line-height: 1.5;
+        }
+        .output-box { position: relative; margin-top: 1.5rem; }
+        .output-box label { font-weight: 600; margin-bottom: 0.5rem; display: block; }
+        .output-text {
+            width: 100%; padding: 1rem; border: 1px solid var(--border);
+            border-radius: 10px; font-family: 'Courier New', monospace; font-size: 0.9rem;
+            background: #1e1e2e; color: #a6e3a1; word-break: break-all;
+        }
+        .btn-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+        .action-btn {
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border); background: white;
+            border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 500;
+        }
+        .action-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .action-btn.primary { background: var(--primary); color: white; border-color: var(--primary); }
+        .action-btn.primary:hover { background: var(--primary-dark); }
+        .file-upload {
+            border: 2px dashed var(--border); border-radius: 12px; padding: 2rem;
+            text-align: center; cursor: pointer; transition: all 0.3s; background: var(--bg);
+        }
+        .file-upload:hover { border-color: var(--primary); background: #eef2ff; }
+        footer {
+            text-align: center; padding: 2rem 1.5rem; color: var(--text-secondary);
+            font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.5rem; }
+            .tool-card { padding: 1.25rem; }
+            .header-content { flex-direction: column; gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <a href="index.html">
+                <img src="/icon.png" alt="Migo Toolbox" class="logo-icon">
+                <span>Migo Toolbox</span>
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="nav-dropdown">
+                <button class="nav-toggle" onclick="toggleNav()" data-en="🧰 All Tools ▾" data-zh="🧰 所有工具 ▾">🧰 All Tools ▾</button>
+                <div class="nav-menu" id="navMenu">
+                    <a href="md5-hash.html" class="active-page">🔒 <span data-en="MD5 Hash" data-zh="MD5 加密">MD5 Hash</span></a>
+                    <a href="index.html">🖼️ <span data-en="Image to Base64" data-zh="图片转 Base64">Image to Base64</span></a>
+                    <a href="base64-to-image.html">📸 <span data-en="Base64 to Image" data-zh="Base64 转图片">Base64 to Image</span></a>
+                    <a href="json-formatter.html">📋 <span data-en="JSON Formatter" data-zh="JSON 格式化">JSON Formatter</span></a>
+                    <a href="url-encoder.html">🔗 <span data-en="URL Encode/Decode" data-zh="URL 编码/解码">URL Encode/Decode</span></a>
+                    <a href="unicode-converter.html">🈶 <span data-en="Unicode Converter" data-zh="Unicode 中文互转">Unicode Converter</span></a>
+                    <a href="hex-converter.html">🔢 <span data-en="Hex Converter" data-zh="Hex 十六进制转换">Hex Converter</span></a>
+                    <a href="ascii-table.html">🔤 <span data-en="ASCII Table" data-zh="ASCII 码对照表">ASCII Table</span></a>
+                    <a href="sha-hash.html">🛡️ <span data-en="SHA1/SHA256 Hash" data-zh="SHA1/SHA256 加密">SHA1/SHA256 Hash</span></a>
+                </div>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <h1 data-en="MD5 Hash Generator" data-zh="MD5 加密工具">MD5 Hash Generator</h1>
+        <p data-en="Generate MD5 checksums for text or files. 100% client-side processing, no uploads." data-zh="为文本或文件生成 MD5 校验和。100% 客户端处理，无需上传。">Generate MD5 checksums for text or files. 100% client-side processing, no uploads.</p>
+    </section>
+
+    <section class="tool-card">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('text')" data-en="Text" data-zh="文本">Text</button>
+            <button class="tab-btn" onclick="switchTab('file')" data-en="File" data-zh="文件">File</button>
+        </div>
+
+        <div class="tab-content active" id="textTab">
+            <textarea id="textInput" placeholder="Enter text to hash..." data-en="Enter text to hash..." data-zh="输入要加密的文本..."></textarea>
+            <div class="btn-bar">
+                <button class="action-btn primary" onclick="hashText()" data-en="🔒 Generate MD5" data-zh="🔒 生成 MD5">🔒 Generate MD5</button>
+                <button class="action-btn" onclick="clearText()" data-en="🗑 Clear" data-zh="🗑 清空">🗑 Clear</button>
+            </div>
+        </div>
+
+        <div class="tab-content" id="fileTab">
+            <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📁</div>
+                <div data-en="Click or drop a file here" data-zh="点击或拖放文件到这里">Click or drop a file here</div>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" onchange="hashFile()">
+            <div id="fileInfo" style="margin-top: 1rem; color: var(--text-secondary);"></div>
+        </div>
+
+        <div class="output-box" id="outputBox" style="display: none;">
+            <label data-en="MD5 Hash:" data-zh="MD5 哈希值:">MD5 Hash:</label>
+            <div class="output-text" id="hashOutput"></div>
+            <div class="btn-bar">
+                <button class="action-btn" onclick="copyHash()" data-en="📋 Copy" data-zh="📋 复制">📋 Copy</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p data-en="© 2024 Migo Toolbox. Free Online Tools for Everyone." data-zh="© 2024 Migo 工具箱. 为每个人提供的免费在线工具。">© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+            const val = el.getAttribute('data-' + lang);
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { el.placeholder = val; }
+            else { el.innerHTML = val; }
+        });
+    }
+
+    function toggleNav() { document.getElementById('navMenu').classList.toggle('show'); }
+    document.addEventListener('click', function(e) {
+        const d = document.querySelector('.nav-dropdown');
+        if (d && !d.contains(e.target)) document.getElementById('navMenu').classList.remove('show');
+    });
+
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelector('.tab-btn[onclick="switchTab(\'' + tab + '\')"]').classList.add('active');
+        document.getElementById(tab + 'Tab').classList.add('active');
+    }
+
+    // MD5 Implementation
+    function md5(string) {
+        function rotateLeft(x, n) { return (x << n) | (x >>> (32 - n)); }
+        function addUnsigned(x, y) {
+            var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+            var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+            return (msw << 16) | (lsw & 0xFFFF);
+        }
+        function F(x, y, z) { return (x & y) | ((~x) & z); }
+        function G(x, y, z) { return (x & z) | (y & (~z)); }
+        function H(x, y, z) { return x ^ y ^ z; }
+        function I(x, y, z) { return y ^ (x | (~z)); }
+        function FF(a, b, c, d, x, s, ac) {
+            a = addUnsigned(a, addUnsigned(addUnsigned(F(b, c, d), x), ac));
+            return addUnsigned(rotateLeft(a, s), b);
+        }
+        function GG(a, b, c, d, x, s, ac) {
+            a = addUnsigned(a, addUnsigned(addUnsigned(G(b, c, d), x), ac));
+            return addUnsigned(rotateLeft(a, s), b);
+        }
+        function HH(a, b, c, d, x, s, ac) {
+            a = addUnsigned(a, addUnsigned(addUnsigned(H(b, c, d), x), ac));
+            return addUnsigned(rotateLeft(a, s), b);
+        }
+        function II(a, b, c, d, x, s, ac) {
+            a = addUnsigned(a, addUnsigned(addUnsigned(I(b, c, d), x), ac));
+            return addUnsigned(rotateLeft(a, s), b);
+        }
+        function convertToWordArray(string) {
+            var wordArray = [];
+            for (var i = 0; i < string.length * 8; i += 8) {
+                wordArray[i >> 5] |= (string.charCodeAt(i / 8) & 0xFF) << (i % 32);
+            }
+            return wordArray;
+        }
+        function utf8Encode(string) {
+            string = string.replace(/\r\n/g, '\n');
+            var output = '';
+            for (var n = 0; n < string.length; n++) {
+                var c = string.charCodeAt(n);
+                if (c < 128) {
+                    output += String.fromCharCode(c);
+                } else if ((c > 127) && (c < 2048)) {
+                    output += String.fromCharCode((c >> 6) | 192);
+                    output += String.fromCharCode((c & 63) | 128);
+                } else {
+                    output += String.fromCharCode((c >> 12) | 224);
+                    output += String.fromCharCode(((c >> 6) & 63) | 128);
+                    output += String.fromCharCode((c & 63) | 128);
+                }
+            }
+            return output;
+        }
+        function wordToHex(word) {
+            var hexTab = '0123456789abcdef';
+            var str = '';
+            for (var i = 0; i <= 3; i++) {
+                str += hexTab.charAt((word >> (i * 8 + 4)) & 0x0F) + hexTab.charAt((word >> (i * 8)) & 0x0F);
+            }
+            return str;
+        }
+
+        var x = [];
+        var a = 1732584193, b = -271733879, c = -1732584194, d = 271733878;
+        string = utf8Encode(string);
+        x = convertToWordArray(string);
+        var oldA, oldB, oldC, oldD;
+        var strLen = string.length * 8;
+        x[strLen >> 5] |= 0x80 << (strLen % 32);
+        x[(((strLen + 64) >>> 9) << 4) + 14] = strLen;
+
+        for (var k = 0; k < x.length; k += 16) {
+            oldA = a; oldB = b; oldC = c; oldD = d;
+            a = FF(a, b, c, d, x[k + 0], 7, -680876936);
+            d = FF(d, a, b, c, x[k + 1], 12, -389564586);
+            c = FF(c, d, a, b, x[k + 2], 17, 606105819);
+            b = FF(b, c, d, a, x[k + 3], 22, -1044525330);
+            a = FF(a, b, c, d, x[k + 4], 7, -176418897);
+            d = FF(d, a, b, c, x[k + 5], 12, 1200080426);
+            c = FF(c, d, a, b, x[k + 6], 17, -1473231341);
+            b = FF(b, c, d, a, x[k + 7], 22, -45705983);
+            a = FF(a, b, c, d, x[k + 8], 7, 1770035416);
+            d = FF(d, a, b, c, x[k + 9], 12, -1958414417);
+            c = FF(c, d, a, b, x[k + 10], 17, -42063);
+            b = FF(b, c, d, a, x[k + 11], 22, -1990404162);
+            a = FF(a, b, c, d, x[k + 12], 7, 1804603682);
+            d = FF(d, a, b, c, x[k + 13], 12, -40341101);
+            c = FF(c, d, a, b, x[k + 14], 17, -1502002290);
+            b = FF(b, c, d, a, x[k + 15], 22, 1236535329);
+            a = GG(a, b, c, d, x[k + 1], 5, -165796510);
+            d = GG(d, a, b, c, x[k + 6], 9, -1069501632);
+            c = GG(c, d, a, b, x[k + 11], 14, 643717713);
+            b = GG(b, c, d, a, x[k + 0], 20, -373897302);
+            a = GG(a, b, c, d, x[k + 5], 5, -701558691);
+            d = GG(d, a, b, c, x[k + 10], 9, 38016083);
+            c = GG(c, d, a, b, x[k + 15], 14, -660478335);
+            b = GG(b, c, d, a, x[k + 4], 20, -405537848);
+            a = GG(a, b, c, d, x[k + 9], 5, 568446438);
+            d = GG(d, a, b, c, x[k + 14], 9, -1019803690);
+            c = GG(c, d, a, b, x[k + 3], 14, -187363961);
+            b = GG(b, c, d, a, x[k + 8], 20, 1163531501);
+            a = GG(a, b, c, d, x[k + 13], 5, -1444681467);
+            d = GG(d, a, b, c, x[k + 2], 9, -51403784);
+            c = GG(c, d, a, b, x[k + 7], 14, 1735328473);
+            b = GG(b, c, d, a, x[k + 12], 20, -1926607734);
+            a = HH(a, b, c, d, x[k + 5], 4, -378558);
+            d = HH(d, a, b, c, x[k + 8], 11, -2022574463);
+            c = HH(c, d, a, b, x[k + 11], 16, 1839030562);
+            b = HH(b, c, d, a, x[k + 14], 23, -35309556);
+            a = HH(a, b, c, d, x[k + 1], 4, -1530992060);
+            d = HH(d, a, b, c, x[k + 4], 11, 1272893353);
+            c = HH(c, d, a, b, x[k + 7], 16, -155497632);
+            b = HH(b, c, d, a, x[k + 10], 23, -1094730640);
+            a = HH(a, b, c, d, x[k + 13], 4, 681279174);
+            d = HH(d, a, b, c, x[k + 0], 11, -358537222);
+            c = HH(c, d, a, b, x[k + 3], 16, -722521979);
+            b = HH(b, c, d, a, x[k + 6], 23, 76029189);
+            a = HH(a, b, c, d, x[k + 9], 4, -640364487);
+            d = HH(d, a, b, c, x[k + 12], 11, -421815835);
+            c = HH(c, d, a, b, x[k + 15], 16, 530742520);
+            b = HH(b, c, d, a, x[k + 2], 23, -995338651);
+            a = II(a, b, c, d, x[k + 0], 6, -198630844);
+            d = II(d, a, b, c, x[k + 7], 10, 1126891415);
+            c = II(c, d, a, b, x[k + 14], 15, -1416354905);
+            b = II(b, c, d, a, x[k + 5], 21, -57434055);
+            a = II(a, b, c, d, x[k + 12], 6, 1700485571);
+            d = II(d, a, b, c, x[k + 3], 10, -1894986606);
+            c = II(c, d, a, b, x[k + 10], 15, -1051523);
+            b = II(b, c, d, a, x[k + 1], 21, -2054922799);
+            a = II(a, b, c, d, x[k + 8], 6, 1873313359);
+            d = II(d, a, b, c, x[k + 15], 10, -30611744);
+            c = II(c, d, a, b, x[k + 6], 15, -1560198380);
+            b = II(b, c, d, a, x[k + 13], 21, 1309151649);
+            a = II(a, b, c, d, x[k + 4], 6, -145523070);
+            d = II(d, a, b, c, x[k + 11], 10, -1120210379);
+            c = II(c, d, a, b, x[k + 2], 15, 718787259);
+            b = II(b, c, d, a, x[k + 9], 21, -343485551);
+            a = addUnsigned(a, oldA);
+            b = addUnsigned(b, oldB);
+            c = addUnsigned(c, oldC);
+            d = addUnsigned(d, oldD);
+        }
+        return (wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d)).toLowerCase();
+    }
+
+    function hashText() {
+        const text = document.getElementById('textInput').value;
+        if (!text) {
+            alert(currentLang === 'zh' ? '请输入文本' : 'Please enter text');
+            return;
+        }
+        const hash = md5(text);
+        document.getElementById('hashOutput').textContent = hash;
+        document.getElementById('outputBox').style.display = 'block';
+    }
+
+    function hashFile() {
+        const file = document.getElementById('fileInput').files[0];
+        if (!file) return;
+        
+        document.getElementById('fileInfo').textContent = (currentLang === 'zh' ? '文件名: ' : 'File: ') + file.name + ' (' + (file.size / 1024).toFixed(2) + ' KB)';
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const arrayBuffer = e.target.result;
+            const bytes = new Uint8Array(arrayBuffer);
+            let binary = '';
+            for (let i = 0; i < bytes.length; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            const hash = md5(binary);
+            document.getElementById('hashOutput').textContent = hash;
+            document.getElementById('outputBox').style.display = 'block';
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
+    function copyHash() {
+        const output = document.getElementById('hashOutput').textContent;
+        const textarea = document.createElement('textarea');
+        textarea.value = output;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+
+    function clearText() {
+        document.getElementById('textInput').value = '';
+        document.getElementById('outputBox').style.display = 'none';
+    }
+</script>
+</body>
+</html>

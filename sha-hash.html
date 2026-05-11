@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SHA1 & SHA256 Hash Generator - Migo Toolbox</title>
+    <meta name="description" content="Free online SHA1 and SHA256 hash generator. Generate secure checksums for text and files. 100% client-side processing.">
+    <meta name="keywords" content="sha1, sha256, hash, checksum, generator, online tool, Migo Toolbox, SHA1加密, SHA256加密">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/sha-hash.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SHA1 & SHA256 Hash Generator - Migo Toolbox">
+    <meta property="og:description" content="Free online SHA1 and SHA256 hash generator. Generate secure checksums for text and files.">
+    <meta property="og:url" content="https://migotoolbox.com/sha-hash.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9667434965972746" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --primary-light: #818cf8;
+            --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b;
+            --border: #e2e8f0; --success: #10b981; --success-bg: #ecfdf5;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .logo a { color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .header-right { display: flex; align-items: center; gap: 1rem; }
+        .nav-dropdown { position: relative; }
+        .nav-toggle {
+            padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border: none;
+            color: white; border-radius: 8px; cursor: pointer; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 0.4rem; transition: background 0.3s;
+        }
+        .nav-toggle:hover { background: rgba(255,255,255,0.3); }
+        .nav-menu {
+            display: none; position: absolute; right: 0; top: calc(100% + 8px);
+            background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 260px; z-index: 200; overflow: hidden; border: 1px solid var(--border);
+        }
+        .nav-menu.show { display: block; }
+        .nav-menu a {
+            display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.25rem;
+            color: var(--text); text-decoration: none; font-size: 0.9rem;
+            transition: background 0.2s; border-bottom: 1px solid #f1f5f9;
+        }
+        .nav-menu a:last-child { border-bottom: none; }
+        .nav-menu a:hover { background: #eef2ff; color: var(--primary); }
+        .nav-menu a.active-page { background: #eef2ff; color: var(--primary); font-weight: 600; }
+        .lang-switch { display: flex; background: rgba(255,255,255,0.2); border-radius: 8px; overflow: hidden; }
+        .lang-btn { padding: 0.5rem 1rem; border: none; background: transparent; color: white; cursor: pointer; font-size: 0.9rem; transition: background 0.3s; }
+        .lang-btn.active { background: rgba(255,255,255,0.3); font-weight: 600; }
+        .lang-btn:hover { background: rgba(255,255,255,0.25); }
+        main { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
+        .hero { text-align: center; margin-bottom: 2rem; }
+        .hero h1 {
+            font-size: 2rem; margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .tool-card {
+            background: var(--card); border-radius: 16px; padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid var(--border);
+        }
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .tab-btn {
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border); background: white;
+            border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s; font-weight: 500;
+        }
+        .tab-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        textarea {
+            width: 100%; min-height: 180px; padding: 1rem; border: 1px solid var(--border);
+            border-radius: 10px; font-family: 'Courier New', monospace; font-size: 0.9rem;
+            resize: vertical; background: #1e1e2e; color: #a6e3a1; line-height: 1.5;
+        }
+        .hash-selector { margin-bottom: 1rem; display: flex; gap: 1rem; }
+        .hash-option { display: flex; align-items: center; gap: 0.5rem; }
+        .output-box { margin-top: 1.5rem; }
+        .output-box label { font-weight: 600; margin-bottom: 0.5rem; display: block; }
+        .output-text {
+            width: 100%; padding: 1rem; border: 1px solid var(--border);
+            border-radius: 10px; font-family: 'Courier New', monospace; font-size: 0.9rem;
+            background: #1e1e2e; color: #a6e3a1; word-break: break-all; margin-bottom: 1rem;
+        }
+        .btn-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+        .action-btn {
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border); background: white;
+            border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 500;
+        }
+        .action-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .action-btn.primary { background: var(--primary); color: white; border-color: var(--primary); }
+        .action-btn.primary:hover { background: var(--primary-dark); }
+        .file-upload {
+            border: 2px dashed var(--border); border-radius: 12px; padding: 2rem;
+            text-align: center; cursor: pointer; transition: all 0.3s; background: var(--bg);
+        }
+        .file-upload:hover { border-color: var(--primary); background: #eef2ff; }
+        footer {
+            text-align: center; padding: 2rem 1.5rem; color: var(--text-secondary);
+            font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.5rem; }
+            .tool-card { padding: 1.25rem; }
+            .header-content { flex-direction: column; gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <a href="index.html">
+                <img src="/icon.png" alt="Migo Toolbox" class="logo-icon">
+                <span>Migo Toolbox</span>
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="nav-dropdown">
+                <button class="nav-toggle" onclick="toggleNav()" data-en="🧰 All Tools ▾" data-zh="🧰 所有工具 ▾">🧰 All Tools ▾</button>
+                <div class="nav-menu" id="navMenu">
+                    <a href="sha-hash.html" class="active-page">🛡️ <span data-en="SHA1/SHA256 Hash" data-zh="SHA1/SHA256 加密">SHA1/SHA256 Hash</span></a>
+                    <a href="index.html">🖼️ <span data-en="Image to Base64" data-zh="图片转 Base64">Image to Base64</span></a>
+                    <a href="base64-to-image.html">📸 <span data-en="Base64 to Image" data-zh="Base64 转图片">Base64 to Image</span></a>
+                    <a href="json-formatter.html">📋 <span data-en="JSON Formatter" data-zh="JSON 格式化">JSON Formatter</span></a>
+                    <a href="url-encoder.html">🔗 <span data-en="URL Encode/Decode" data-zh="URL 编码/解码">URL Encode/Decode</span></a>
+                    <a href="unicode-converter.html">🈶 <span data-en="Unicode Converter" data-zh="Unicode 中文互转">Unicode Converter</span></a>
+                    <a href="hex-converter.html">🔢 <span data-en="Hex Converter" data-zh="Hex 十六进制转换">Hex Converter</span></a>
+                    <a href="ascii-table.html">🔤 <span data-en="ASCII Table" data-zh="ASCII 码对照表">ASCII Table</span></a>
+                    <a href="md5-hash.html">🔒 <span data-en="MD5 Hash" data-zh="MD5 加密">MD5 Hash</span></a>
+                </div>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <h1 data-en="SHA1 & SHA256 Hash Generator" data-zh="SHA1 & SHA256 加密工具">SHA1 & SHA256 Hash Generator</h1>
+        <p data-en="Generate secure SHA1 and SHA256 checksums for text or files. 100% client-side processing." data-zh="为文本或文件生成安全的 SHA1 和 SHA256 校验和。100% 客户端处理。">Generate secure SHA1 and SHA256 checksums for text or files. 100% client-side processing.</p>
+    </section>
+
+    <section class="tool-card">
+        <div class="hash-selector">
+            <label class="hash-option">
+                <input type="checkbox" id="sha1Check" checked>
+                <span data-en="SHA1" data-zh="SHA1">SHA1</span>
+            </label>
+            <label class="hash-option">
+                <input type="checkbox" id="sha256Check" checked>
+                <span data-en="SHA256" data-zh="SHA256">SHA256</span>
+            </label>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('text')" data-en="Text" data-zh="文本">Text</button>
+            <button class="tab-btn" onclick="switchTab('file')" data-en="File" data-zh="文件">File</button>
+        </div>
+
+        <div class="tab-content active" id="textTab">
+            <textarea id="textInput" placeholder="Enter text to hash..." data-en="Enter text to hash..." data-zh="输入要加密的文本..."></textarea>
+            <div class="btn-bar">
+                <button class="action-btn primary" onclick="hashText()" data-en="🛡️ Generate Hash" data-zh="🛡️ 生成哈希">🛡️ Generate Hash</button>
+                <button class="action-btn" onclick="clearText()" data-en="🗑 Clear" data-zh="🗑 清空">🗑 Clear</button>
+            </div>
+        </div>
+
+        <div class="tab-content" id="fileTab">
+            <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📁</div>
+                <div data-en="Click or drop a file here" data-zh="点击或拖放文件到这里">Click or drop a file here</div>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" onchange="hashFile()">
+            <div id="fileInfo" style="margin-top: 1rem; color: var(--text-secondary);"></div>
+        </div>
+
+        <div id="outputContainer" style="display: none;"></div>
+    </section>
+</main>
+
+<footer>
+    <p data-en="© 2024 Migo Toolbox. Free Online Tools for Everyone." data-zh="© 2024 Migo 工具箱. 为每个人提供的免费在线工具。">© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+            const val = el.getAttribute('data-' + lang);
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { el.placeholder = val; }
+            else { el.innerHTML = val; }
+        });
+    }
+
+    function toggleNav() { document.getElementById('navMenu').classList.toggle('show'); }
+    document.addEventListener('click', function(e) {
+        const d = document.querySelector('.nav-dropdown');
+        if (d && !d.contains(e.target)) document.getElementById('navMenu').classList.remove('show');
+    });
+
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelector('.tab-btn[onclick="switchTab(\'' + tab + '\')"]').classList.add('active');
+        document.getElementById(tab + 'Tab').classList.add('active');
+    }
+
+    // SHA-1 Implementation
+    function sha1(msg) {
+        function rotateLeft(n, s) { return (n << s) | (n >>> (32 - s)); }
+        function utf8Encode(str) {
+            str = str.replace(/\r\n/g, '\n');
+            let out = '';
+            for (let n = 0; n < str.length; n++) {
+                const c = str.charCodeAt(n);
+                if (c < 128) {
+                    out += String.fromCharCode(c);
+                } else if ((c > 127) && (c < 2048)) {
+                    out += String.fromCharCode((c >> 6) | 192);
+                    out += String.fromCharCode((c & 63) | 128);
+                } else {
+                    out += String.fromCharCode((c >> 12) | 224);
+                    out += String.fromCharCode(((c >> 6) & 63) | 128);
+                    out += String.fromCharCode((c & 63) | 128);
+                }
+            }
+            return out;
+        }
+        function hex(num) {
+            let str = '';
+            let v;
+            for (let i = 7; i >= 0; i--) {
+                v = (num >>> (i * 4)) & 0x0f;
+                str += v.toString(16);
+            }
+            return str;
+        }
+
+        msg = utf8Encode(msg);
+        let ml = msg.length * 8;
+        let wa = [];
+        for (let i = 0; i < msg.length; i++) {
+            wa[i >> 2] |= msg.charCodeAt(i) << (24 - (i % 4) * 8);
+        }
+        wa[msg.length >> 2] |= 0x80 << (24 - (msg.length % 4) * 8);
+        wa[((msg.length + 8) >> 6 << 4) + 15] = ml;
+
+        let h0 = 1732584193, h1 = -271733879, h2 = -1732584194, h3 = 271733878, h4 = -1009589776;
+
+        for (let i = 0; i < wa.length; i += 16) {
+            let w = [], a = h0, b = h1, c = h2, d = h3, e = h4, temp;
+            for (let j = 0; j < 80; j++) {
+                w[j] = j < 16 ? wa[i + j] : rotateLeft(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
+                temp = (rotateLeft(a, 5) + (j < 20 ? (b & c) | (~b & d) : j < 40 ? b ^ c ^ d : j < 60 ? (b & c) | (b & d) | (c & d) : b ^ c ^ d) + e + w[j] + (j < 20 ? 1518500249 : j < 40 ? 1859775393 : j < 60 ? -1894007588 : -899497514)) | 0;
+                e = d; d = c; c = rotateLeft(b, 30); b = a; a = temp;
+            }
+            h0 = (h0 + a) | 0; h1 = (h1 + b) | 0; h2 = (h2 + c) | 0; h3 = (h3 + d) | 0; h4 = (h4 + e) | 0;
+        }
+        return (hex(h0) + hex(h1) + hex(h2) + hex(h3) + hex(h4)).toLowerCase();
+    }
+
+    // SHA-256 Implementation
+    function sha256(msg) {
+        function rotateRight(n, x) { return (x >>> n) | (x << (32 - n)); }
+        function sigma0(x) { return rotateRight(2, x) ^ rotateRight(13, x) ^ rotateRight(22, x); }
+        function sigma1(x) { return rotateRight(6, x) ^ rotateRight(11, x) ^ rotateRight(25, x); }
+        function gamma0(x) { return rotateRight(7, x) ^ rotateRight(18, x) ^ (x >>> 3); }
+        function gamma1(x) { return rotateRight(17, x) ^ rotateRight(19, x) ^ (x >>> 10); }
+        function ch(x, y, z) { return (x & y) ^ (~x & z); }
+        function maj(x, y, z) { return (x & y) ^ (x & z) ^ (y & z); }
+        function utf8Encode(str) {
+            str = str.replace(/\r\n/g, '\n');
+            let out = '';
+            for (let n = 0; n < str.length; n++) {
+                const c = str.charCodeAt(n);
+                if (c < 128) {
+                    out += String.fromCharCode(c);
+                } else if ((c > 127) && (c < 2048)) {
+                    out += String.fromCharCode((c >> 6) | 192);
+                    out += String.fromCharCode((c & 63) | 128);
+                } else {
+                    out += String.fromCharCode((c >> 12) | 224);
+                    out += String.fromCharCode(((c >> 6) & 63) | 128);
+                    out += String.fromCharCode((c & 63) | 128);
+                }
+            }
+            return out;
+        }
+        function hex(num) {
+            let str = '';
+            for (let i = 7; i >= 0; i--) {
+                str += ((num >>> (i * 4)) & 0x0f).toString(16);
+            }
+            return str;
+        }
+
+        const K = [
+            0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+            0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+            0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+            0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+            0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+            0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+            0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+            0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+        ];
+
+        msg = utf8Encode(msg);
+        let ml = msg.length * 8;
+        let wa = [];
+        for (let i = 0; i < msg.length; i++) {
+            wa[i >> 2] |= msg.charCodeAt(i) << (24 - (i % 4) * 8);
+        }
+        wa[msg.length >> 2] |= 0x80 << (24 - (msg.length % 4) * 8);
+        wa[((msg.length + 8) >> 6 << 4) + 14] = Math.floor(ml / 0x100000000);
+        wa[((msg.length + 8) >> 6 << 4) + 15] = ml;
+
+        let h0 = 0x6a09e667, h1 = 0xbb67ae85, h2 = 0x3c6ef372, h3 = 0xa54ff53a;
+        let h4 = 0x510e527f, h5 = 0x9b05688c, h6 = 0x1f83d9ab, h7 = 0x5be0cd19;
+
+        for (let i = 0; i < wa.length; i += 16) {
+            let w = [], a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7, temp1, temp2;
+            for (let j = 0; j < 64; j++) {
+                w[j] = j < 16 ? wa[i + j] : (gamma1(w[j - 2]) + w[j - 7] + gamma0(w[j - 15]) + w[j - 16]) | 0;
+                temp1 = (h + sigma1(e) + ch(e, f, g) + K[j] + w[j]) | 0;
+                temp2 = (sigma0(a) + maj(a, b, c)) | 0;
+                h = g; g = f; f = e; e = (d + temp1) | 0;
+                d = c; c = b; b = a; a = (temp1 + temp2) | 0;
+            }
+            h0 = (h0 + a) | 0; h1 = (h1 + b) | 0; h2 = (h2 + c) | 0; h3 = (h3 + d) | 0;
+            h4 = (h4 + e) | 0; h5 = (h5 + f) | 0; h6 = (h6 + g) | 0; h7 = (h7 + h) | 0;
+        }
+        return (hex(h0) + hex(h1) + hex(h2) + hex(h3) + hex(h4) + hex(h5) + hex(h6) + hex(h7)).toLowerCase();
+    }
+
+    function getBinaryString(arrayBuffer) {
+        const bytes = new Uint8Array(arrayBuffer);
+        let binary = '';
+        for (let i = 0; i < bytes.length; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return binary;
+    }
+
+    function displayHashes(binary) {
+        const container = document.getElementById('outputContainer');
+        container.innerHTML = '';
+        container.style.display = 'block';
+
+        if (document.getElementById('sha1Check').checked) {
+            const sha1Hash = sha1(binary);
+            const div = document.createElement('div');
+            div.className = 'output-box';
+            div.innerHTML = `
+                <label>SHA1:</label>
+                <div class="output-text">${sha1Hash}</div>
+                <button class="action-btn" onclick="copyText('${sha1Hash}')" data-en="📋 Copy SHA1" data-zh="📋 复制 SHA1">📋 Copy SHA1</button>
+            `;
+            container.appendChild(div);
+        }
+
+        if (document.getElementById('sha256Check').checked) {
+            const sha256Hash = sha256(binary);
+            const div = document.createElement('div');
+            div.className = 'output-box';
+            div.innerHTML = `
+                <label>SHA256:</label>
+                <div class="output-text">${sha256Hash}</div>
+                <button class="action-btn" onclick="copyText('${sha256Hash}')" data-en="📋 Copy SHA256" data-zh="📋 复制 SHA256">📋 Copy SHA256</button>
+            `;
+            container.appendChild(div);
+        }
+
+        if (currentLang === 'zh') {
+            container.querySelectorAll('[data-zh]').forEach(el => {
+                el.textContent = el.getAttribute('data-zh');
+            });
+        }
+    }
+
+    function hashText() {
+        const text = document.getElementById('textInput').value;
+        if (!text) {
+            alert(currentLang === 'zh' ? '请输入文本' : 'Please enter text');
+            return;
+        }
+        if (!document.getElementById('sha1Check').checked && !document.getElementById('sha256Check').checked) {
+            alert(currentLang === 'zh' ? '请至少选择一个哈希算法' : 'Please select at least one hash algorithm');
+            return;
+        }
+        displayHashes(text);
+    }
+
+    function hashFile() {
+        const file = document.getElementById('fileInput').files[0];
+        if (!file) return;
+        
+        document.getElementById('fileInfo').textContent = (currentLang === 'zh' ? '文件名: ' : 'File: ') + file.name + ' (' + (file.size / 1024).toFixed(2) + ' KB)';
+        
+        if (!document.getElementById('sha1Check').checked && !document.getElementById('sha256Check').checked) {
+            alert(currentLang === 'zh' ? '请至少选择一个哈希算法' : 'Please select at least one hash algorithm');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const binary = getBinaryString(e.target.result);
+            displayHashes(binary);
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
+    function copyText(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+
+    function clearText() {
+        document.getElementById('textInput').value = '';
+        document.getElementById('outputContainer').style.display = 'none';
+    }
+</script>
+</body>
+</html>
