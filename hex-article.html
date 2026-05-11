@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>十六进制Hex与字符串互转新手教程 | Migo Toolbox</title>
+    <meta name="description" content="十六进制Hex与字符串互转新手教程，开发中Hex编码常用场景：网络、加密、硬件。">
+    <meta name="keywords" content="十六进制, Hex转换, hex to string, string to hex, hexadecimal">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/hex-article.html">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b; --border: #e2e8f0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+        header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 1rem 0; }
+        .header-content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo a { color: white; text-decoration: none; }
+        main { max-width: 800px; margin: 2rem auto; padding: 0 1.5rem; }
+        article { background: var(--card); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        h1 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem; }
+        h2 { color: var(--text); margin: 1.5rem 0 1rem; font-size: 1.3rem; }
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .tool-link { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+        .tool-link:hover { background: var(--primary-dark); }
+        .lang-switch { margin-bottom: 1rem; }
+        .lang-btn { padding: 0.5rem 1rem; border: 1px solid var(--border); background: white; border-radius: 6px; cursor: pointer; }
+        .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .lang-content.en { display: none; }
+        .lang-content.zh { display: block; }
+        body.en .lang-content.en { display: block; }
+        body.en .lang-content.zh { display: none; }
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo"><a href="index.html">Migo Toolbox</a></div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <article>
+        <div class="lang-content zh">
+            <h1>十六进制 Hex 与字符串互转新手教程</h1>
+            
+            <h2>一、什么是十六进制</h2>
+            <p>十六进制（Hexadecimal）是一种以 16 为基数的计数系统，使用 0-9 和 A-F 表示数值。在计算机领域，十六进制常用于表示二进制数据，因为每一位十六进制数字对应 4 位二进制数，便于阅读和书写。</p>
+
+            <h2>二、Hex 与字符串互转原理</h2>
+            <ul>
+                <li><strong>字符串转 Hex：</strong>将每个字符的 ASCII 码转换为两位十六进制数</li>
+                <li><strong>Hex 转字符串：</strong>将每两位十六进制数转换为对应的字符</li>
+            </ul>
+            <p>例如："AB" → 字符串"AB"的 ASCII 码为 65、66 → Hex 为 4142</p>
+
+            <h2>三、开发中 Hex 编码常用场景</h2>
+            <h3>1. 网络通信</h3>
+            <p>网络协议中常用十六进制表示二进制数据，便于调试和日志记录。</p>
+            
+            <h3>2. 加密算法</h3>
+            <p>哈希值、密钥等通常以十六进制形式表示和存储。</p>
+            
+            <h3>3. 硬件编程</h3>
+            <p>与硬件设备通信时，寄存器值、内存地址等常用十六进制表示。</p>
+            
+            <h3>4. 数据存储</h3>
+            <p>二进制数据在文本环境中（如配置文件）常转换为十六进制存储。</p>
+
+            <h2>四、使用在线工具转换</h2>
+            <p>在线 Hex 转换工具可以快速完成：</p>
+            <ul>
+                <li>字符串到十六进制转换</li>
+                <li>十六进制到字符串转换</li>
+                <li>十进制、二进制与十六进制互转</li>
+            </ul>
+
+            <a href="hex-converter.html" class="tool-link">🔧 使用 Hex 转换工具</a>
+        </div>
+
+        <div class="lang-content en">
+            <h1>Hexadecimal Conversion Guide for Beginners</h1>
+            
+            <h2>I. What is Hexadecimal</h2>
+            <p>Hexadecimal is a base-16 number system using digits 0-9 and letters A-F. In computing, hexadecimal is commonly used to represent binary data because each hex digit corresponds to 4 bits, making it easier to read and write.</p>
+
+            <h2>II. Hex to String Conversion Principle</h2>
+            <ul>
+                <li><strong>String to Hex:</strong> Convert each character's ASCII value to two hex digits</li>
+                <li><strong>Hex to String:</strong> Convert every two hex digits back to their corresponding character</li>
+            </ul>
+            <p>Example: "AB" → ASCII values 65, 66 → Hex 4142</p>
+
+            <h2>III. Common Hex Encoding Scenarios in Development</h2>
+            <h3>1. Network Communication</h3>
+            <p>Network protocols often use hexadecimal to represent binary data for debugging and logging.</p>
+            
+            <h3>2. Encryption Algorithms</h3>
+            <p>Hash values, keys, and encrypted data are typically displayed and stored in hexadecimal format.</p>
+            
+            <h3>3. Hardware Programming</h3>
+            <p>Register values, memory addresses, and hardware communication often use hexadecimal notation.</p>
+            
+            <h3>4. Data Storage</h3>
+            <p>Binary data is frequently converted to hexadecimal for storage in text-based environments.</p>
+
+            <h2>IV. Using Online Conversion Tools</h2>
+            <p>Online hex converters can quickly handle:</p>
+            <ul>
+                <li>String to hexadecimal conversion</li>
+                <li>Hexadecimal to string conversion</li>
+                <li>Decimal, binary, and hexadecimal conversions</li>
+            </ul>
+
+            <a href="hex-converter.html" class="tool-link">🔧 Use Hex Converter Tool</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <p>© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    function switchLang(lang) {
+        document.body.className = lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    }
+</script>
+</body>
+</html>

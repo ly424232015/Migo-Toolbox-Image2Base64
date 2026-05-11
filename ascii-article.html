@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ASCII码是什么？常用字符十进制/十六进制对照表 | Migo Toolbox</title>
+    <meta name="description" content="ASCII码是什么？常用字符十进制/十六进制对照表，程序员必须熟记的ASCII特殊字符大全。">
+    <meta name="keywords" content="ASCII码, ASCII表, ASCII字符, ASCII对照表, ASCII codes">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/ascii-article.html">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b; --border: #e2e8f0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+        header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 1rem 0; }
+        .header-content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo a { color: white; text-decoration: none; }
+        main { max-width: 800px; margin: 2rem auto; padding: 0 1.5rem; }
+        article { background: var(--card); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        h1 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem; }
+        h2 { color: var(--text); margin: 1.5rem 0 1rem; font-size: 1.3rem; }
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .tool-link { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+        .tool-link:hover { background: var(--primary-dark); }
+        .lang-switch { margin-bottom: 1rem; }
+        .lang-btn { padding: 0.5rem 1rem; border: 1px solid var(--border); background: white; border-radius: 6px; cursor: pointer; }
+        .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .lang-content.en { display: none; }
+        .lang-content.zh { display: block; }
+        body.en .lang-content.en { display: block; }
+        body.en .lang-content.zh { display: none; }
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo"><a href="index.html">Migo Toolbox</a></div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <article>
+        <div class="lang-content zh">
+            <h1>ASCII 码是什么？常用字符对照表</h1>
+            
+            <h2>一、什么是 ASCII 码</h2>
+            <p>ASCII（American Standard Code for Information Interchange）是美国信息交换标准代码。它使用 7 位二进制数（0-127）来表示 128 个字符，包括英文字母、数字、标点符号和控制字符。</p>
+
+            <h2>二、ASCII 码分类</h2>
+            <ul>
+                <li><strong>控制字符（0-31 和 127）：</strong>不可打印字符，用于控制设备操作</li>
+                <li><strong>可打印字符（32-126）：</strong>包括空格、数字、字母、标点符号等</li>
+            </ul>
+
+            <h2>三、常用 ASCII 字符速查表</h2>
+            <ul>
+                <li><strong>数字 0-9：</strong>十进制 48-57</li>
+                <li><strong>大写字母 A-Z：</strong>十进制 65-90</li>
+                <li><strong>小写字母 a-z：</strong>十进制 97-122</li>
+                <li><strong>空格：</strong>十进制 32</li>
+                <li><strong>换行符：</strong>十进制 10</li>
+                <li><strong>回车符：</strong>十进制 13</li>
+            </ul>
+
+            <h2>四、程序员必须熟记的特殊字符</h2>
+            <ul>
+                <li><code>\n</code> (10): 换行符</li>
+                <li><code>\r</code> (13): 回车符</li>
+                <li><code>\t</code> (9): 水平制表符</li>
+                <li><code>\0</code> (0): 空字符</li>
+                <li><code>^</code> (94): 脱字符</li>
+                <li><code>_</code> (95): 下划线</li>
+            </ul>
+
+            <h2>五、ASCII 码的应用场景</h2>
+            <ul>
+                <li>文本文件编码</li>
+                <li>字符比较和排序</li>
+                <li>密码验证（如检查是否包含数字/字母）</li>
+                <li>串口通信协议</li>
+            </ul>
+
+            <a href="ascii-table.html" class="tool-link">🔧 查看完整 ASCII 码表</a>
+        </div>
+
+        <div class="lang-content en">
+            <h1>What is ASCII? Character Codes Reference</h1>
+            
+            <h2>I. What is ASCII</h2>
+            <p>ASCII (American Standard Code for Information Interchange) is a character encoding standard. It uses 7-bit binary numbers (0-127) to represent 128 characters, including English letters, digits, punctuation marks, and control characters.</p>
+
+            <h2>II. ASCII Code Categories</h2>
+            <ul>
+                <li><strong>Control Characters (0-31 and 127):</strong> Non-printable characters used for device control</li>
+                <li><strong>Printable Characters (32-126):</strong> Includes space, digits, letters, and punctuation</li>
+            </ul>
+
+            <h2>III. Common ASCII Characters Quick Reference</h2>
+            <ul>
+                <li><strong>Digits 0-9:</strong> Decimal 48-57</li>
+                <li><strong>Uppercase A-Z:</strong> Decimal 65-90</li>
+                <li><strong>Lowercase a-z:</strong> Decimal 97-122</li>
+                <li><strong>Space:</strong> Decimal 32</li>
+                <li><strong>Newline:</strong> Decimal 10</li>
+                <li><strong>Carriage Return:</strong> Decimal 13</li>
+            </ul>
+
+            <h2>IV. Essential Special Characters for Programmers</h2>
+            <ul>
+                <li><code>\n</code> (10): Newline</li>
+                <li><code>\r</code> (13): Carriage return</li>
+                <li><code>\t</code> (9): Horizontal tab</li>
+                <li><code>\0</code> (0): Null character</li>
+                <li><code>^</code> (94): Caret</li>
+                <li><code>_</code> (95): Underscore</li>
+            </ul>
+
+            <h2>V. ASCII Applications</h2>
+            <ul>
+                <li>Text file encoding</li>
+                <li>Character comparison and sorting</li>
+                <li>Password validation</li>
+                <li>Serial communication protocols</li>
+            </ul>
+
+            <a href="ascii-table.html" class="tool-link">🔧 View Complete ASCII Table</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <p>© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    function switchLang(lang) {
+        document.body.className = lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    }
+</script>
+</body>
+</html>

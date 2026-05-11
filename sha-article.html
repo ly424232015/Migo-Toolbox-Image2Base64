@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SHA1与SHA256有什么区别？安全级别对比 | Migo Toolbox</title>
+    <meta name="description" content="SHA1与SHA256有什么区别？安全级别对比，密码存储为什么推荐用SHA256而非MD5，在线SHA哈希加密工具使用教程。">
+    <meta name="keywords" content="SHA1, SHA256, SHA加密, SHA哈希, SHA256 vs SHA1">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/sha-article.html">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b; --border: #e2e8f0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+        header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 1rem 0; }
+        .header-content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo a { color: white; text-decoration: none; }
+        main { max-width: 800px; margin: 2rem auto; padding: 0 1.5rem; }
+        article { background: var(--card); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        h1 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem; }
+        h2 { color: var(--text); margin: 1.5rem 0 1rem; font-size: 1.3rem; }
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .tool-link { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+        .tool-link:hover { background: var(--primary-dark); }
+        .lang-switch { margin-bottom: 1rem; }
+        .lang-btn { padding: 0.5rem 1rem; border: 1px solid var(--border); background: white; border-radius: 6px; cursor: pointer; }
+        .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .lang-content.en { display: none; }
+        .lang-content.zh { display: block; }
+        body.en .lang-content.en { display: block; }
+        body.en .lang-content.zh { display: none; }
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo"><a href="index.html">Migo Toolbox</a></div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <article>
+        <div class="lang-content zh">
+            <h1>SHA1 与 SHA256 区别与安全级别对比</h1>
+            
+            <h2>一、SHA 系列算法简介</h2>
+            <p>SHA（Secure Hash Algorithm）是美国国家安全局设计的安全哈希算法系列。SHA-1 和 SHA-256 是其中最常用的两种，它们都将任意长度数据转换为固定长度的哈希值。</p>
+
+            <h2>二、SHA1 与 SHA256 的主要区别</h2>
+            <ul>
+                <li><strong>输出长度：</strong>SHA1 输出 160 位（40 个十六进制字符），SHA256 输出 256 位（64 个十六进制字符）</li>
+                <li><strong>安全性：</strong>SHA256 比 SHA1 安全得多</li>
+                <li><strong>性能：</strong>SHA1 计算速度略快于 SHA256</li>
+                <li><strong>碰撞抵抗：</strong>SHA1 已被破解，SHA256 目前安全</li>
+            </ul>
+
+            <h2>三、安全级别对比</h2>
+            <ul>
+                <li><strong>SHA1：</strong>2005 年被发现存在碰撞攻击，现已不推荐用于安全场景</li>
+                <li><strong>SHA256：</strong>目前没有已知的有效攻击方法，是当前推荐的安全标准</li>
+            </ul>
+
+            <h2>四、为什么密码存储推荐用 SHA256</h2>
+            <ul>
+                <li><strong>更高的安全性：</strong>更长的输出长度增加了破解难度</li>
+                <li><strong>抗碰撞能力强：</strong>目前无法找到碰撞</li>
+                <li><strong>行业标准：</strong>被广泛应用于 TLS、数字签名等安全协议</li>
+                <li><strong>比 MD5 安全：</strong>MD5 已完全不安全，SHA256 是更好的选择</li>
+            </ul>
+
+            <h2>五、SHA256 使用最佳实践</h2>
+            <ul>
+                <li><strong>添加盐值：</strong>对密码进行哈希前添加随机盐值</li>
+                <li><strong>多次哈希：</strong>使用 PBKDF2、bcrypt 或 scrypt 等算法</li>
+                <li><strong>定期更新：</strong>关注最新的安全研究</li>
+            </ul>
+
+            <h2>六、在线 SHA 工具使用教程</h2>
+            <ul>
+                <li>输入文本或上传文件</li>
+                <li>选择 SHA1 或 SHA256 算法</li>
+                <li>点击生成哈希值</li>
+                <li>复制结果用于验证或存储</li>
+            </ul>
+
+            <a href="sha-hash.html" class="tool-link">🔧 使用 SHA1/SHA256 加密工具</a>
+        </div>
+
+        <div class="lang-content en">
+            <h1>SHA1 vs SHA256: Differences and Security Comparison</h1>
+            
+            <h2>I. Introduction to SHA Algorithms</h2>
+            <p>SHA (Secure Hash Algorithm) is a series of cryptographic hash functions designed by NSA. SHA-1 and SHA-256 are two of the most commonly used, both converting variable-length data into fixed-length hash values.</p>
+
+            <h2>II. Key Differences Between SHA1 and SHA256</h2>
+            <ul>
+                <li><strong>Output Length:</strong> SHA1 produces 160-bit (40 hex chars), SHA256 produces 256-bit (64 hex chars)</li>
+                <li><strong>Security:</strong> SHA256 is significantly more secure</li>
+                <li><strong>Performance:</strong> SHA1 is slightly faster than SHA256</li>
+                <li><strong>Collision Resistance:</strong> SHA1 is broken, SHA256 remains secure</li>
+            </ul>
+
+            <h2>III. Security Level Comparison</h2>
+            <ul>
+                <li><strong>SHA1:</strong> Collision attacks discovered in 2005, no longer recommended for security</li>
+                <li><strong>SHA256:</strong> No practical attacks known, currently recommended</li>
+            </ul>
+
+            <h2>IV. Why SHA256 for Password Storage</h2>
+            <ul>
+                <li><strong>Higher Security:</strong> Longer output increases cracking difficulty</li>
+                <li><strong>Strong Collision Resistance:</strong> No collisions found to date</li>
+                <li><strong>Industry Standard:</strong> Used in TLS, digital signatures, etc.</li>
+                <li><strong>More Secure Than MD5:</strong> MD5 is completely insecure</li>
+            </ul>
+
+            <h2>V. SHA256 Best Practices</h2>
+            <ul>
+                <li><strong>Add Salt:</strong> Add random salt before hashing passwords</li>
+                <li><strong>Multiple Rounds:</strong> Use PBKDF2, bcrypt, or scrypt</li>
+                <li><strong>Stay Updated:</strong> Follow latest security research</li>
+            </ul>
+
+            <h2>VI. Online SHA Tool Tutorial</h2>
+            <ul>
+                <li>Enter text or upload file</li>
+                <li>Select SHA1 or SHA256 algorithm</li>
+                <li>Click to generate hash</li>
+                <li>Copy result for verification or storage</li>
+            </ul>
+
+            <a href="sha-hash.html" class="tool-link">🔧 Use SHA1/SHA256 Hash Tool</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <p>© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    function switchLang(lang) {
+        document.body.className = lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    }
+</script>
+</body>
+</html>

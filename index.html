@@ -503,16 +503,9 @@
         }
 
         .action-btn {
-            padding: 0.6rem 1.2rem;
-            border: 1px solid var(--border);
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
+            padding: 0.6rem 1.2rem; border: 1px solid var(--border); background: white;
+            border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 500;
         }
 
         .action-btn:hover {
@@ -715,6 +708,10 @@
         <h1 data-en="Image to Base64 Converter" data-zh="图片转 Base64 在线工具">Image to Base64 Converter</h1>
         <p data-en="Convert your images to Base64 strings instantly. Free, fast, and 100% client-side — your files never leave your browser." data-zh="将图片即时转换为 Base64 字符串。免费、快速、100% 在客户端处理 — 您的文件永远不会离开浏览器。">Convert your images to Base64 strings instantly. Free, fast, and 100% client-side — your files never leave your browser.</p>
     </section>
+
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+        <a href="image-base64-article.html" class="action-btn" data-en="📖 Learn More" data-zh="📖 了解更多">📖 Learn More</a>
+    </div>
 
     <section class="converter-card">
         <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">

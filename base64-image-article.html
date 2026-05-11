@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Base64字符串如何快速还原成普通图片 | Migo Toolbox</title>
+    <meta name="description" content="Base64字符串如何快速还原成普通图片，网页前端Base64图片解码原理教程。">
+    <meta name="keywords" content="Base64转图片, base64 decoder, base64 to image, 图片解码">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/base64-image-article.html">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b; --border: #e2e8f0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+        header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 1rem 0; }
+        .header-content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo a { color: white; text-decoration: none; }
+        main { max-width: 800px; margin: 2rem auto; padding: 0 1.5rem; }
+        article { background: var(--card); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        h1 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem; }
+        h2 { color: var(--text); margin: 1.5rem 0 1rem; font-size: 1.3rem; }
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .tool-link { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+        .tool-link:hover { background: var(--primary-dark); }
+        .lang-switch { margin-bottom: 1rem; }
+        .lang-btn { padding: 0.5rem 1rem; border: 1px solid var(--border); background: white; border-radius: 6px; cursor: pointer; }
+        .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .lang-content.en { display: none; }
+        .lang-content.zh { display: block; }
+        body.en .lang-content.en { display: block; }
+        body.en .lang-content.zh { display: none; }
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo"><a href="index.html">Migo Toolbox</a></div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <article>
+        <div class="lang-content zh">
+            <h1>Base64 字符串如何快速还原成普通图片</h1>
+            
+            <h2>一、Base64 图片格式解析</h2>
+            <p>Base64 编码的图片通常以 Data URI 格式存在，格式为：<code>data:image/[格式];base64,[Base64字符串]</code>。其中格式可以是 png、jpeg、webp 等常见图片格式。</p>
+
+            <h2>二、快速还原方法</h2>
+            <p>使用在线 Base64 转图片工具，只需三步：</p>
+            <ul>
+                <li>复制 Base64 字符串（包含或不包含 Data URI 前缀均可）</li>
+                <li>粘贴到工具输入框</li>
+                <li>点击转换按钮，即可预览并下载还原后的图片</li>
+            </ul>
+
+            <h2>三、网页前端 Base64 图片解码原理</h2>
+            <p>在浏览器中，Base64 图片的解码过程是自动完成的：</p>
+            <ul>
+                <li><strong>Data URI 解析：</strong>浏览器识别 data:image/ 前缀</li>
+                <li><strong>Base64 解码：</strong>将 Base64 字符串转换为二进制数据</li>
+                <li><strong>图片渲染：</strong>根据 MIME 类型渲染图片</li>
+            </ul>
+
+            <h2>四、前端 JavaScript 解码实现</h2>
+            <p>开发者可以使用 JavaScript 手动解码 Base64 图片：</p>
+            <ul>
+                <li>使用 <code>atob()</code> 函数解码 Base64 字符串</li>
+                <li>将解码后的字符串转换为 Uint8Array</li>
+                <li>创建 Blob 对象并生成 URL</li>
+                <li>将 URL 赋值给 img 标签的 src 属性</li>
+            </ul>
+
+            <h2>五、常见应用场景</h2>
+            <ul>
+                <li>解析 API 返回的 Base64 图片数据</li>
+                <li>提取网页中内联的 Base64 图片</li>
+                <li>调试 Base64 编码的图片数据</li>
+                <li>批量转换 Base64 图片为文件格式</li>
+            </ul>
+
+            <a href="base64-to-image.html" class="tool-link">🔧 使用 Base64 转图片工具</a>
+        </div>
+
+        <div class="lang-content en">
+            <h1>How to Convert Base64 String Back to Image</h1>
+            
+            <h2>I. Understanding Base64 Image Format</h2>
+            <p>Base64-encoded images typically exist in Data URI format: <code>data:image/[format];base64,[Base64 string]</code>. The format can be png, jpeg, webp, or other common image formats.</p>
+
+            <h2>II. Quick Conversion Method</h2>
+            <p>Using an online Base64 to image tool is simple with three steps:</p>
+            <ul>
+                <li>Copy the Base64 string (with or without Data URI prefix)</li>
+                <li>Paste into the tool's input box</li>
+                <li>Click convert button to preview and download the restored image</li>
+            </ul>
+
+            <h2>III. Frontend Base64 Image Decoding Principle</h2>
+            <p>In browsers, Base64 image decoding happens automatically:</p>
+            <ul>
+                <li><strong>Data URI Parsing:</strong> Browser recognizes the data:image/ prefix</li>
+                <li><strong>Base64 Decoding:</strong> Converts Base64 string to binary data</li>
+                <li><strong>Image Rendering:</strong> Renders based on MIME type</li>
+            </ul>
+
+            <h2>IV. JavaScript Decoding Implementation</h2>
+            <p>Developers can manually decode Base64 images using JavaScript:</p>
+            <ul>
+                <li>Use the <code>atob()</code> function to decode Base64 string</li>
+                <li>Convert decoded string to Uint8Array</li>
+                <li>Create Blob object and generate URL</li>
+                <li>Assign URL to img tag's src attribute</li>
+            </ul>
+
+            <h2>V. Common Use Cases</h2>
+            <ul>
+                <li>Parse Base64 image data from API responses</li>
+                <li>Extract inline Base64 images from web pages</li>
+                <li>Debug Base64-encoded image data</li>
+                <li>Batch convert Base64 images to file format</li>
+            </ul>
+
+            <a href="base64-to-image.html" class="tool-link">🔧 Use Base64 to Image Tool</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <p>© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    function switchLang(lang) {
+        document.body.className = lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    }
+</script>
+</body>
+</html>

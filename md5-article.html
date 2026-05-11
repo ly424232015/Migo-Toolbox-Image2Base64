@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MD5加密原理及日常使用场景 | Migo Toolbox</title>
+    <meta name="description" content="MD5加密原理及日常使用场景，MD5可以解密吗？聊聊MD5的安全性，如何用MD5做文件、文本完整性校验。">
+    <meta name="keywords" content="MD5, MD5加密, MD5解密, MD5校验, MD5 hash">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/md5-article.html">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b; --border: #e2e8f0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+        header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 1rem 0; }
+        .header-content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo a { color: white; text-decoration: none; }
+        main { max-width: 800px; margin: 2rem auto; padding: 0 1.5rem; }
+        article { background: var(--card); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        h1 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem; }
+        h2 { color: var(--text); margin: 1.5rem 0 1rem; font-size: 1.3rem; }
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .tool-link { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+        .tool-link:hover { background: var(--primary-dark); }
+        .lang-switch { margin-bottom: 1rem; }
+        .lang-btn { padding: 0.5rem 1rem; border: 1px solid var(--border); background: white; border-radius: 6px; cursor: pointer; }
+        .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .lang-content.en { display: none; }
+        .lang-content.zh { display: block; }
+        body.en .lang-content.en { display: block; }
+        body.en .lang-content.zh { display: none; }
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo"><a href="index.html">Migo Toolbox</a></div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <article>
+        <div class="lang-content zh">
+            <h1>MD5 加密原理及日常使用场景</h1>
+            
+            <h2>一、MD5 加密原理</h2>
+            <p>MD5（Message-Digest Algorithm 5）是一种广泛使用的哈希函数，它将任意长度的数据转换为固定长度（128 位，即 32 个十六进制字符）的哈希值。MD5 具有以下特性：</p>
+            <ul>
+                <li><strong>固定输出：</strong>无论输入多长，输出都是 32 位十六进制字符串</li>
+                <li><strong>单向性：</strong>从哈希值无法逆向推导出原始数据</li>
+                <li><strong>雪崩效应：</strong>输入的微小变化会导致输出的巨大变化</li>
+            </ul>
+
+            <h2>二、MD5 可以解密吗？</h2>
+            <p>理论上 MD5 是不可逆的，但由于其算法的局限性，存在以下破解方式：</p>
+            <ul>
+                <li><strong>彩虹表攻击：</strong>预先计算常见密码的 MD5 值进行比对</li>
+                <li><strong>碰撞攻击：</strong>找到两个不同输入产生相同哈希值</li>
+                <li><strong>暴力破解：</strong>尝试所有可能的输入组合</li>
+            </ul>
+            <p>因此，MD5 不再适合用于密码存储等安全敏感场景。</p>
+
+            <h2>三、MD5 的安全性现状</h2>
+            <p>MD5 已被证实存在严重的安全漏洞：</p>
+            <ul>
+                <li>2004 年被发现存在碰撞漏洞</li>
+                <li>不建议用于新的安全系统</li>
+                <li>推荐使用 SHA-256 或更高强度的算法</li>
+            </ul>
+
+            <h2>四、MD5 的日常使用场景</h2>
+            <ul>
+                <li><strong>文件完整性校验：</strong>验证下载文件是否被篡改</li>
+                <li><strong>数据签名：</strong>快速验证数据是否被修改</li>
+                <li><strong>缓存键值：</strong>作为缓存的唯一标识</li>
+                <li><strong>日志脱敏：</strong>对敏感信息进行哈希处理</li>
+            </ul>
+
+            <h2>五、如何用 MD5 做文件校验</h2>
+            <ul>
+                <li>对原始文件计算 MD5 值</li>
+                <li>将 MD5 值随文件一起分发</li>
+                <li>接收方对文件重新计算 MD5 并比对</li>
+            </ul>
+
+            <a href="md5-hash.html" class="tool-link">🔧 使用 MD5 加密工具</a>
+        </div>
+
+        <div class="lang-content en">
+            <h1>MD5 Encryption Principles and Use Cases</h1>
+            
+            <h2>I. MD5 Encryption Principle</h2>
+            <p>MD5 (Message-Digest Algorithm 5) is a widely used hash function that converts data of any length into a fixed-length (128-bit, 32 hexadecimal characters) hash value. MD5 has these characteristics:</p>
+            <ul>
+                <li><strong>Fixed Output:</strong> Always produces 32 hexadecimal characters regardless of input size</li>
+                <li><strong>One-way:</strong> Impossible to reverse-engineer original data from hash</li>
+                <li><strong>Avalanche Effect:</strong> Small input changes cause significant output changes</li>
+            </ul>
+
+            <h2>II. Can MD5 be Decrypted?</h2>
+            <p>Theoretically MD5 is irreversible, but due to algorithm limitations, these attacks exist:</p>
+            <ul>
+                <li><strong>Rainbow Table Attack:</strong> Pre-computed MD5 values for common passwords</li>
+                <li><strong>Collision Attack:</strong> Find two different inputs with same hash</li>
+                <li><strong>Brute Force:</strong> Try all possible input combinations</li>
+            </ul>
+            <p>Therefore, MD5 is no longer suitable for security-sensitive scenarios like password storage.</p>
+
+            <h2>III. MD5 Security Status</h2>
+            <p>MD5 has proven security vulnerabilities:</p>
+            <ul>
+                <li>Collision vulnerabilities discovered in 2004</li>
+                <li>Not recommended for new security systems</li>
+                <li>SHA-256 or stronger algorithms recommended</li>
+            </ul>
+
+            <h2>IV. Common MD5 Use Cases</h2>
+            <ul>
+                <li><strong>File Integrity Check:</strong> Verify downloaded files aren't tampered</li>
+                <li><strong>Data Signing:</strong> Quick verification of data modification</li>
+                <li><strong>Cache Keys:</strong> Unique identifiers for caching</li>
+                <li><strong>Log Anonymization:</strong> Hash sensitive information</li>
+            </ul>
+
+            <h2>V. Using MD5 for File Verification</h2>
+            <ul>
+                <li>Calculate MD5 of original file</li>
+                <li>Distribute MD5 with the file</li>
+                <li>Recipient recalculates and compares MD5</li>
+            </ul>
+
+            <a href="md5-hash.html" class="tool-link">🔧 Use MD5 Hash Tool</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <p>© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    function switchLang(lang) {
+        document.body.className = lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    }
+</script>
+</body>
+</html>

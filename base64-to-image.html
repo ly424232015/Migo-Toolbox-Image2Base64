@@ -126,7 +126,7 @@
         .action-btn {
             padding: 0.6rem 1.2rem; border: 1px solid var(--border); background: white;
             border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;
-            display: flex; align-items: center; gap: 0.4rem;
+            display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 500;
         }
         .action-btn:hover { border-color: var(--primary); color: var(--primary); }
         .action-btn.primary {
@@ -211,6 +211,10 @@
         <h1 data-en="Base64 to Image Converter" data-zh="Base64 转图片工具">Base64 to Image Converter</h1>
         <p data-en="Paste your Base64 string below and convert it back to an image. Download the result instantly." data-zh="在下方粘贴 Base64 字符串，将其转换回图片并即时下载。">Paste your Base64 string below and convert it back to an image. Download the result instantly.</p>
     </section>
+
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+        <a href="base64-image-article.html" class="action-btn" data-en="📖 Learn More" data-zh="📖 了解更多">📖 Learn More</a>
+    </div>
 
     <section class="tool-card">
         <div class="input-group">

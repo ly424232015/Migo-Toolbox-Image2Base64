@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>为什么网址会出现乱码？URL编码原理 | Migo Toolbox</title>
+    <meta name="description" content="为什么网址会出现乱码？URL编码原理，中文、特殊符号URL编码解码使用场景，接口请求中URL转义常见坑及解决。">
+    <meta name="keywords" content="URL编码, URL解码, percent encoding, URL转义, url encode, url decode">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/url-encoder-article.html">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b; --border: #e2e8f0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+        header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 1rem 0; }
+        .header-content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo a { color: white; text-decoration: none; }
+        main { max-width: 800px; margin: 2rem auto; padding: 0 1.5rem; }
+        article { background: var(--card); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        h1 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem; }
+        h2 { color: var(--text); margin: 1.5rem 0 1rem; font-size: 1.3rem; }
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .tool-link { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+        .tool-link:hover { background: var(--primary-dark); }
+        .lang-switch { margin-bottom: 1rem; }
+        .lang-btn { padding: 0.5rem 1rem; border: 1px solid var(--border); background: white; border-radius: 6px; cursor: pointer; }
+        .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .lang-content.en { display: none; }
+        .lang-content.zh { display: block; }
+        body.en .lang-content.en { display: block; }
+        body.en .lang-content.zh { display: none; }
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo"><a href="index.html">Migo Toolbox</a></div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <article>
+        <div class="lang-content zh">
+            <h1>为什么网址会出现乱码？URL 编码原理</h1>
+            
+            <h2>一、URL 编码的必要性</h2>
+            <p>URL 只能包含 ASCII 字符集中的一部分字符。当 URL 中包含中文、空格或特殊符号时，必须进行编码转换，否则会导致 URL 解析错误或出现乱码。</p>
+
+            <h2>二、URL 编码原理</h2>
+            <p>URL 编码（也称为百分号编码）将不安全或特殊的字符转换为 <code>%xx</code> 格式，其中 xx 是字符的 ASCII 码的十六进制表示。例如：</p>
+            <ul>
+                <li>空格 → <code>%20</code></li>
+                <li>中文"中" → <code>%E4%B8%AD</code></li>
+                <li>& → <code>%26</code></li>
+                <li>= → <code>%3D</code></li>
+            </ul>
+
+            <h2>三、中文、特殊符号编码场景</h2>
+            <ul>
+                <li><strong>URL 参数传递：</strong>URL 查询参数中包含中文或特殊字符</li>
+                <li><strong>表单提交：</strong>GET 请求的表单数据</li>
+                <li><strong>文件路径：</strong>URL 中包含特殊字符的文件名</li>
+                <li><strong>API 接口：</strong>RESTful API 的路径参数</li>
+            </ul>
+
+            <h2>四、接口请求中 URL 转义常见问题</h2>
+            <ul>
+                <li><strong>双重编码：</strong>前端和后端都进行编码导致错误</li>
+                <li><strong>编码不一致：</strong>不同语言的编码方式差异</li>
+                <li><strong>特殊字符遗漏：</strong>某些特殊字符未被正确编码</li>
+                <li><strong>空格处理：</strong>空格有时编码为 <code>%20</code>，有时为 <code>+</code></li>
+            </ul>
+
+            <h2>五、解决方案</h2>
+            <ul>
+                <li>统一编码方式（推荐使用 encodeURIComponent）</li>
+                <li>明确前后端的编码职责</li>
+                <li>使用在线工具验证编码结果</li>
+                <li>对敏感字符进行双重检查</li>
+            </ul>
+
+            <a href="url-encoder.html" class="tool-link">🔧 使用 URL 编码解码工具</a>
+        </div>
+
+        <div class="lang-content en">
+            <h1>Why URLs Show Garbled Text? URL Encoding Explained</h1>
+            
+            <h2>I. The Need for URL Encoding</h2>
+            <p>URLs can only contain a subset of ASCII characters. When URLs contain Chinese characters, spaces, or special symbols, they must be encoded to prevent parsing errors or garbled text.</p>
+
+            <h2>II. URL Encoding Principle</h2>
+            <p>URL encoding (also called percent-encoding) converts unsafe or special characters into <code>%xx</code> format, where xx is the hexadecimal ASCII value of the character. For example:</p>
+            <ul>
+                <li>Space → <code>%20</code></li>
+                <li>Chinese "中" → <code>%E4%B8%AD</code></li>
+                <li>& → <code>%26</code></li>
+                <li>= → <code>%3D</code></li>
+            </ul>
+
+            <h2>III. Chinese & Special Character Encoding Scenarios</h2>
+            <ul>
+                <li><strong>URL Parameters:</strong> URL query parameters containing Chinese or special characters</li>
+                <li><strong>Form Submission:</strong> GET request form data</li>
+                <li><strong>File Paths:</strong> Filenames with special characters in URLs</li>
+                <li><strong>API Endpoints:</strong> RESTful API path parameters</li>
+            </ul>
+
+            <h2>IV. Common URL Escaping Issues in API Requests</h2>
+            <ul>
+                <li><strong>Double Encoding:</strong> Both frontend and backend encode, causing errors</li>
+                <li><strong>Encoding Inconsistency:</strong> Different encoding methods across languages</li>
+                <li><strong>Missing Special Characters:</strong> Some special characters not properly encoded</li>
+                <li><strong>Space Handling:</strong> Spaces sometimes encoded as <code>%20</code>, sometimes as <code>+</code></li>
+            </ul>
+
+            <h2>V. Solutions</h2>
+            <ul>
+                <li>Use consistent encoding method (prefer encodeURIComponent)</li>
+                <li>Clarify encoding responsibilities between frontend and backend</li>
+                <li>Validate encoding results with online tools</li>
+                <li>Double-check sensitive characters</li>
+            </ul>
+
+            <a href="url-encoder.html" class="tool-link">🔧 Use URL Encoder/Decoder Tool</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <p>© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    function switchLang(lang) {
+        document.body.className = lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    }
+</script>
+</body>
+</html>
