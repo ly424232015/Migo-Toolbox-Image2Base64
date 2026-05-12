@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时间戳转换详解 | Unix时间戳与日期时间互转 | Migo Toolbox</title>
+    <meta name="description" content="时间戳转换详解，Unix时间戳与日期时间互转，学习如何在编程中处理时间戳。">
+    <meta name="keywords" content="时间戳, Unix时间戳, 时间戳转日期, 日期转时间戳, 时间戳转换">
+    <meta name="author" content="Migo Toolbox">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://migotoolbox.com/timestamp-article.html">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6366f1; --primary-dark: #4f46e5; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --text-secondary: #64748b; --border: #e2e8f0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+        header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 1rem 0; }
+        .header-content { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo a { color: white; text-decoration: none; }
+        main { max-width: 800px; margin: 2rem auto; padding: 0 1.5rem; }
+        article { background: var(--card); padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        h1 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem; }
+        h2 { color: var(--text); margin: 1.5rem 0 1rem; font-size: 1.3rem; }
+        p { color: var(--text-secondary); margin-bottom: 1rem; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        code { background: var(--bg); padding: 0.25rem 0.5rem; border-radius: 4px; font-family: 'Courier New', monospace; }
+        .tool-link { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+        .tool-link:hover { background: var(--primary-dark); }
+        .lang-switch { margin-bottom: 1rem; }
+        .lang-btn { padding: 0.5rem 1rem; border: 1px solid var(--border); background: white; border-radius: 6px; cursor: pointer; }
+        .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .lang-content.en { display: none; }
+        .lang-content.zh { display: block; }
+        body.en .lang-content.en { display: block; }
+        body.en .lang-content.zh { display: none; }
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo"><a href="index.html">Migo Toolbox</a></div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <article>
+        <div class="lang-content zh">
+            <h1>时间戳转换详解 | Unix时间戳与日期时间互转</h1>
+            
+            <h2>一、什么是 Unix 时间戳</h2>
+            <p>Unix 时间戳（Unix timestamp）是自 1970 年 1 月 1 日 00:00:00 UTC 以来经过的秒数或毫秒数。它是计算机系统中广泛使用的一种时间表示方式。</p>
+
+            <h2>二、毫秒与秒时间戳</h2>
+            <p>时间戳有两种常见表示：</p>
+            <ul>
+                <li><strong>秒时间戳：</strong>10 位数字，如 <code>1715491200</code></li>
+                <li><strong>毫秒时间戳：</strong>13 位数字，如 <code>1715491200000</code></li>
+            </ul>
+
+            <h2>三、时间戳与日期时间互转</h2>
+            <p>使用在线工具可以快速转换：</p>
+            <ul>
+                <li><strong>时间戳转日期：</strong>输入时间戳，工具自动转换为可读的日期时间</li>
+                <li><strong>日期转时间戳：</strong>选择日期时间，工具自动计算对应的时间戳</li>
+            </ul>
+
+            <h2>四、编程中的时间戳</h2>
+            <p>在各种编程语言中获取时间戳：</p>
+            <ul>
+                <li><strong>JavaScript：</strong><code>Date.now()</code> 或 <code>new Date().getTime()</code></li>
+                <li><strong>Python：</strong><code>import time; int(time.time() * 1000)</code></li>
+                <li><strong>Java：</strong><code>System.currentTimeMillis()</code></li>
+                <li><strong>PHP：</strong><code>time() * 1000</code></li>
+            </ul>
+
+            <h2>五、时间戳的优势</h2>
+            <p>使用时间戳的好处：</p>
+            <ul>
+                <li>不受时区影响，全球统一</li>
+                <li>计算时间差非常简单</li>
+                <li>存储和传输效率高</li>
+                <li>排序和比较容易</li>
+            </ul>
+
+            <a href="timestamp-converter.html" class="tool-link">🔧 使用时间戳转换工具</a>
+        </div>
+
+        <div class="lang-content en">
+            <h1>Timestamp Conversion Guide | Unix Timestamp to DateTime</h1>
+            
+            <h2>I. What is Unix Timestamp</h2>
+            <p>Unix timestamp is the number of seconds or milliseconds that have elapsed since January 1, 1970, 00:00:00 UTC. It's a widely used time representation in computer systems.</p>
+
+            <h2>II. Millisecond vs Second Timestamp</h2>
+            <p>There are two common timestamp formats:</p>
+            <ul>
+                <li><strong>Second timestamp:</strong> 10 digits, e.g., <code>1715491200</code></li>
+                <li><strong>Millisecond timestamp:</strong> 13 digits, e.g., <code>1715491200000</code></li>
+            </ul>
+
+            <h2>III. Timestamp to DateTime Conversion</h2>
+            <p>Use online tools for quick conversion:</p>
+            <ul>
+                <li><strong>Timestamp to Date:</strong> Enter timestamp, tool converts to readable date time</li>
+                <li><strong>Date to Timestamp:</strong> Select date time, tool calculates the corresponding timestamp</li>
+            </ul>
+
+            <h2>IV. Timestamps in Programming</h2>
+            <p>Get timestamps in various programming languages:</p>
+            <ul>
+                <li><strong>JavaScript:</strong><code>Date.now()</code> or <code>new Date().getTime()</code></li>
+                <li><strong>Python:</strong><code>import time; int(time.time() * 1000)</code></li>
+                <li><strong>Java:</strong><code>System.currentTimeMillis()</code></li>
+                <li><strong>PHP:</strong><code>time() * 1000</code></li>
+            </ul>
+
+            <h2>V. Advantages of Timestamps</h2>
+            <p>Benefits of using timestamps:</p>
+            <ul>
+                <li>Timezone-independent, global standard</li>
+                <li>Very simple to calculate time differences</li>
+                <li>High efficiency for storage and transmission</li>
+                <li>Easy to sort and compare</li>
+            </ul>
+
+            <a href="timestamp-converter.html" class="tool-link">🔧 Use Timestamp Converter</a>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <p>© 2024 Migo Toolbox. Free Online Tools for Everyone.</p>
+</footer>
+
+<script>
+    function switchLang(lang) {
+        document.body.className = lang;
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector(`.lang-btn[onclick="switchLang('${lang}')"]`).classList.add('active');
+    }
+</script>
+</body>
+</html>
